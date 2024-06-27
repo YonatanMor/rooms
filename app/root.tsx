@@ -1,8 +1,5 @@
-import type { Song, User } from "@prisma/client"
 import type {
   LinksFunction,
-  LoaderFunctionArgs,
-  MetaFunction,
 } from "@remix-run/node"
 import {
   Links,
@@ -11,17 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
-import { typedjson } from "remix-typedjson"
-import type { UseDataFunctionReturn } from "remix-typedjson/dist/remix"
 import tailwind from "~/styles/tailwind.css?url"
-import { authenticator } from "./models/auth.server"
-import {
-  findAllSongs,
-  findMostPopularSongs,
-  findRecentlyAddedSongs,
-  findUserPlayHistory,
-} from "./models/song.server"
-import { findUserByIdOrThrow } from "./models/user.server"
 
 export const links: LinksFunction = () => {
   return [
