@@ -10,7 +10,8 @@ export default {
           blue: "#3FA2F6",
           green: "#81A263",
         },
-        text: { gray: { 100: "#9F9898", 200: "#7D7B8A" } },
+        menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
+        text: { gray: { 100: "#9F9898", 200: "#7D7B8A", 300: "#4E4E4E" } },
       },
       fontSize: {
         xs: "12px",
@@ -24,6 +25,10 @@ export default {
         "5xl": "36px",
         "6xl": "42px",
       },
+      height: {
+        10: "44px",
+      },
+      margin: { 9: "41px", 10: "44px" },
     },
   },
 }
