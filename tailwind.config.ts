@@ -11,6 +11,7 @@ export default {
           green: "#81A263",
         },
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
+        btn: { 300: "#4793AF" },
         text: { gray: { 100: "#9F9898", 200: "#7D7B8A", 300: "#4E4E4E" } },
       },
       fontSize: {
@@ -24,6 +25,7 @@ export default {
         "4xl": "30px",
         "5xl": "36px",
         "6xl": "42px",
+        "7xl": "44px",
       },
       height: {
         10: "44px",
