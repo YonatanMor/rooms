@@ -1,13 +1,10 @@
-import { useEffect, useState } from "react"
-import Menu from "~/components/menu"
+import { useState } from "react"
+import Menu1 from "../../routes/menu1"
 import { motion } from "framer-motion"
 import { RxHamburgerMenu } from "react-icons/rx"
 
 export default function TopBar() {
   const [showMenu, setShowMenu] = useState(false)
-  useEffect(() => {
-    console.log(showMenu)
-  }, [showMenu])
 
   const slideMenuVariants = {
     open: { x: 0 },
@@ -16,15 +13,15 @@ export default function TopBar() {
 
   return (
     <>
-      <div className="flex h-10 items-center justify-start mt-1">
-        <div className="ml-3 relative" onClick={() => setShowMenu(!showMenu)}>
+      <div className="flex dvh- items-center justify-start mt-1">
+        <div className="ml-3 relative " onClick={() => setShowMenu(!showMenu)}>
           <RxHamburgerMenu size={30} />
         </div>{" "}
         <div className="ml-1 text-text-gray-200 font-extrabold text-3xl">
           Rooms
         </div>
         <div className="flex justify-center items-center ml-auto mr-3 bg-table-yellow rounded-full h-11 w-11">
-          Y.M
+          <img src="" alt="y.m" />
         </div>
       </div>
       <motion.div
@@ -37,10 +34,10 @@ export default function TopBar() {
           stiffness: 400,
         }}
         onClick={() => setShowMenu(!showMenu)}
-        className="absolute w-3/4 h-full rounded-r-3xl bg-menu-300 text-3xl"
+        className="absolute w-[76%] h-full rounded-r-3xl bg-gradient-to-r from-menu-300 to-menu-400 text-3xl"
       >
         {" "}
-        <Menu />
+        <Menu1 />
       </motion.div>
     </>
   )
