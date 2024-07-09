@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        table: {
+        flag: {
           red: "#C80036",
           yellow: "#FDE767",
           blue: "#3FA2F6",
@@ -13,6 +13,7 @@ export default {
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
         btn: { 300: "#4793AF" },
         text: { gray: { 100: "#9F9898", 200: "#7D7B8A", 300: "#4E4E4E" } },
+        table: { 100: "#068FFF", 200: "#F4E0B9", 300: "#EEEEEE" },
       },
       fontSize: {
         xs: "12px",

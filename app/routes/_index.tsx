@@ -4,6 +4,7 @@ import Flags from "~/components/app/flags"
 import EventDialog from "~/routes/event-dialog"
 
 export default function Index() {
+  
   return (
     <div className="flex flex-col h-screen">
       <TopBar />

@@ -1,29 +1,82 @@
 export default function Table() {
+  //   ;`grid-template-columns: repeat(hours.length, (1fr);
+  // grid-template-rows: repeat(classRooms.length , minmax(1fr, 1fr));`
+
+  const hours = [
+    "",
+    "8:00",
+    "8:30",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+  ]
+  const classrooms = [
+    "Yoga",
+    "Spinning",
+    "Climbing",
+    "s",
+    "sd",
+    "sd",
+    "sd",
+    "sd",
+    ,
+    "sd",
+    "sd",
+  ]
+  let key = 0
+
+  const tableRows = classrooms.map((room) => {
+    const restOfRow = []
+    for (let i = 0; i < hours.length - 1; ++i) {
+      restOfRow.push({ content: "", id: key + 100, style: `bg-table-200` })
+      key += 1
+    }
+    return [
+      { content: room, id: key + 1000, style: `bg-table-300` },
+      ...restOfRow,
+    ]
+  })
+
+  const tableHours = hours.map((hour, i) => {
+    return { content: hour, id: i, style: `bg-white` }
+  })
+
+  const table = [...tableHours, ...tableRows.flat()]
+
+  console.log(table)
+
   return (
     <div className="flex flex-col grow mb-2">
-      <h2 className="text-center text-text-gray-100 text-lg">
+      <h2 className="text-center text-text-gray-100 text-lg ">
         Monday 31 March 2025
       </h2>
-      <div className=" bg-slate-200 grow overflow-auto">
-        <div className="grid grid-rows-3 grid-cols-15 gap-1">
-            <div className="flex items-center justify-center bg-blue-500">1</div>
-            <div className="flex items-center justify-center bg-blue-500">2</div>
-            <div className="flex items-center justify-center bg-blue-500">3</div>
-            <div className="flex items-center justify-center bg-blue-500">4</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-            <div className="flex items-center justify-center bg-blue-500">5</div>
-                        <div className="flex items-center justify-center bg-blue-500">9</div>
+
+      <div className=" bg-slate-800 w-[200px] h-[400px] overflow-x-auto overflow-y-auto">
+        <div
+          // className={`bg-red-300 grid grid-rows-4 grid-cols-4 gap-1`}
+          className={`grid  whitespace-nowrap gap-1`}
+          style={{
+            gridTemplateColumns: `repeat(${hours.length}, minmax(40px, 1fr))`,
+            gridTemplateRows: `repeat(${classrooms.length + 1}, minmax(40px, 1fr))`,
+          }}
+        >
+          {table.map((cell) => (
+            <div
+              key={cell.id}
+              className={`${cell.style} flex justify-center items-center`}
+            >
+              {cell.content}
+            </div>
+          ))}
         </div>
       </div>
     </div>
