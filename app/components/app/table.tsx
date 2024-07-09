@@ -1,5 +1,4 @@
 export default function Table() {
-
   const hours = [
     "",
     "8:00",
@@ -77,24 +76,23 @@ export default function Table() {
     return {
       content: hour,
       id: i,
-      style: `bg-white text-base`,
+      style: `bg-white text-base sticky top-0 z-10 ${i === 0 ? 'left-0 z-30' : ''}`,
     }
   })
 
   const table = [...tableHours, ...tableRows.flat()]
 
   return (
-    <div className="flex flex-col h-[89dvh] mb-2 ">
+    <div className="flex flex-col  h-[89dvh] mb-2 ">
       <h2 className="text-center text-text-gray-100 text-lg ">
         Monday 31 March 2025
       </h2>
 
       <div className="bg-slate-400  overflow-x-auto overflow-y-auto border-2">
         <div
-          className={`grid gap-1`}
+          className={`grid gap-1 w-max h-max`}
           style={{
             gridTemplateColumns: `repeat(${hours.length}, minmax(80px, auto))`,
-
             gridTemplateRows: `repeat(${classrooms.length + 1}, minmax(36px, 1fr))`,
           }}
         >
