@@ -58,7 +58,7 @@ export default function Table() {
       restOfRow.push({
         content: "",
         id: key + 100,
-        style: `bg-table-200 text-base`,
+        style: `bg-table-100 text-base `,
       })
       key += 1
     }
@@ -66,7 +66,7 @@ export default function Table() {
       {
         content: room,
         id: key + 1000,
-        style: `bg-table-300 sticky left-0 z-20 text-base`,
+        style: `bg-table-200 sticky left-0 text-base `,
       },
       ...restOfRow,
     ]
@@ -76,7 +76,7 @@ export default function Table() {
     return {
       content: hour,
       id: i,
-      style: `bg-white text-base sticky top-0 z-10 ${i === 0 ? 'left-0 z-30' : ''}`,
+      style: `h-5 z-20 text-base sticky top-0`,
     }
   })
 
@@ -88,14 +88,15 @@ export default function Table() {
         Monday 31 March 2025
       </h2>
 
-      <div className="bg-slate-400  overflow-x-auto overflow-y-auto border-2">
+      <div className="bg-table-300  overflow-x-auto overflow-y-auto">
         <div
           className={`grid gap-1 w-max h-max`}
           style={{
-            gridTemplateColumns: `repeat(${hours.length}, minmax(80px, auto))`,
-            gridTemplateRows: `repeat(${classrooms.length + 1}, minmax(36px, 1fr))`,
+            gridTemplateColumns: `repeat(${hours.length}, minmax(5rem, auto))`,
+            gridTemplateRows: ` 20px repeat(${classrooms.length + 1}, minmax(3rem, 1fr))`,
           }}
         >
+          <div className="w-full h-[24px] absolute z-10 bg-white"></div>
           {table.map((cell) => (
             <div
               key={cell.id}
