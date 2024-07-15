@@ -1,10 +1,26 @@
 export default function Table() {
   const hours = [
     "",
-    "8:00",
-    "8:30",
-    "9:00",
-    "9:30",
+    "00:00",
+    "00:30",
+    "01:00",
+    "01:30",
+    "02:00",
+    "02:30",
+    "03:00",
+    "03:30",
+    "04:00",
+    "04:30",
+    "05:00",
+    "05:30",
+    "06:00",
+    "06:30",
+    "07:00",
+    "07:30",
+    "08:00",
+    "08:30",
+    "09:00",
+    "09:30",
     "10:00",
     "10:30",
     "11:00",
@@ -17,6 +33,22 @@ export default function Table() {
     "14:30",
     "15:00",
     "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "20:30",
+    "21:00",
+    "21:30",
+    "22:00",
+    "22:30",
+    "23:00",
+    "23:30",
   ]
   const classrooms = [
     "Yoga",
@@ -58,15 +90,15 @@ export default function Table() {
       restOfRow.push({
         content: "",
         id: key + 100,
-        style: `bg-table-100 text-base `,
+        style: `bg-table-200 text-base `,
       })
       key += 1
     }
     return [
       {
         content: room,
-        id: key + 1000,
-        style: `bg-table-200 sticky left-0 text-base `,
+        id: key + 10000,
+        style: `bg-table-100 sticky left-0 text-base `,
       },
       ...restOfRow,
     ]
@@ -83,12 +115,12 @@ export default function Table() {
   const table = [...tableHours, ...tableRows.flat()]
 
   return (
-    <div className="flex flex-col  h-[89dvh] mb-2 ">
+    <div className="flex flex-col  h-[89dvh] mb-2 ml-1">
       <h2 className="text-center text-text-gray-100 text-lg ">
         Monday 31 March 2025
       </h2>
 
-      <div className="bg-table-300  overflow-x-auto overflow-y-auto">
+      <div className="bg-white overflow-x-auto overflow-y-auto">
         <div
           className={`grid gap-1 w-max h-max`}
           style={{
@@ -97,10 +129,11 @@ export default function Table() {
           }}
         >
           <div className="w-full h-[24px] absolute z-10 bg-white"></div>
+          <div className="bg-white absolute z-30 h-6 w-20"></div>
           {table.map((cell) => (
             <div
               key={cell.id}
-              className={`${cell.style} flex justify-center items-center`}
+              className={`${cell.style} flex justify-center items-center rounded-md`}
             >
               {cell.content}
             </div>

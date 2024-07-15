@@ -24,7 +24,6 @@ export default function Menu() {
 
   const handleNavigation = () => {
     setShowMenu(false)
-
     setTimeout(() => {
       navigate("/")
     }, 200)
@@ -32,7 +31,7 @@ export default function Menu() {
 
   return (
     <div onClick={handleNavigation}>
-      {" "}
+      {/* {" "} */}
       <AnimatePresence>
         {showMenu && (
           <motion.div
@@ -56,24 +55,31 @@ export default function Menu() {
               <nav>
                 <motion.div>
                   <NavLink to="/">
-                    {/* read on navLink's prop: 'end' */}
-                    {({ isActive }) => (
-                      <div
-                        className={`
+                    {({ isActive }) => {
+                      console.log(isActive)
+                      return (
+                        <div
+                          className={`
                           ${
-                            isActive ? "bg-menu-500" : ""
+                            isActive ? "bg-menu-500" : "bg-red-300"
                           } flex justify-start items-center h-10 rounded-r-full
                         `}
-                      >
-                        <span className="text-xl relative left-10">Today</span>
-                        <IoTodayOutline size={23} className="absolute left-2" />
-                      </div>
-                    )}
+                        >
+                          <span className="text-xl relative left-10">
+                            Today
+                          </span>
+                          <IoTodayOutline
+                            size={23}
+                            className="absolute left-2"
+                          />
+                        </div>
+                      )
+                    }}
                   </NavLink>
                 </motion.div>
 
                 <motion.div>
-                  <NavLink to="/about">
+                  <NavLink to="/about" end>
                     {({ isActive }) => (
                       <div
                         className={`
