@@ -1,4 +1,13 @@
+import { useContext } from "react"
+import { AppContext } from "~/appContext"
+
 export default function Table() {
+  const { showEventDialog, setShowEventDialog } = useContext(AppContext)
+
+  const handleEvet = () => {
+    setShowEventDialog(true)
+  }
+
   const hours = [
     "",
     "00:00",
@@ -50,6 +59,7 @@ export default function Table() {
     "23:00",
     "23:30",
   ]
+
   const classrooms = [
     "Yoga",
     "Spinning",
@@ -88,7 +98,9 @@ export default function Table() {
     const restOfRow = []
     for (let i = 0; i < hours.length - 1; ++i) {
       restOfRow.push({
-        content: "",
+        title: "",
+        hour: hours[i + 1],
+        classroom: room,
         id: key + 100,
         style: `bg-table-200 text-base `,
       })
@@ -96,7 +108,7 @@ export default function Table() {
     }
     return [
       {
-        content: room,
+        title: room,
         id: key + 10000,
         style: `bg-table-100 sticky left-0 text-base `,
       },
@@ -106,7 +118,7 @@ export default function Table() {
 
   const tableHours = hours.map((hour, i) => {
     return {
-      content: hour,
+      title: hour,
       id: i,
       style: `h-5 z-20 text-base sticky top-0`,
     }
@@ -115,7 +127,7 @@ export default function Table() {
   const table = [...tableHours, ...tableRows.flat()]
 
   return (
-    <div className="flex flex-col  h-[89dvh] mb-2 ml-1">
+    <div className="flex flex-col h-[89dvh] mb-2 ml-1">
       <h2 className="text-center text-text-gray-100 text-lg ">
         Monday 31 March 2025
       </h2>
@@ -129,13 +141,14 @@ export default function Table() {
           }}
         >
           <div className="w-full h-[24px] absolute z-10 bg-white"></div>
-          <div className="bg-white absolute z-30 h-6 w-20"></div>
+          <div className="bg-white absolute z-30 h-6 w-[84px] left-0"></div>
           {table.map((cell) => (
             <div
               key={cell.id}
+              onClick={handleEvet}
               className={`${cell.style} flex justify-center items-center rounded-md`}
             >
-              {cell.content}
+              {cell.title}
             </div>
           ))}
         </div>
