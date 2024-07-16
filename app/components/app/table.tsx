@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { AppContext } from "~/appContext"
+import { AppContext } from "~/app-context"
 
 export default function Table() {
   const { showEventDialog, setShowEventDialog } = useContext(AppContext)

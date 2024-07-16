@@ -1,8 +1,8 @@
-import { useContext, useState } from "react"
+import { useContext} from "react"
 import { RxHamburgerMenu } from "react-icons/rx"
 import Menu from "./menu"
 import Logo from "../common/logo"
-import { AppContext } from "~/appContext"
+import { AppContext } from "~/app-context"
 
 export default function TopBar() {
   const {showMenu, setShowMenu} = useContext(AppContext)

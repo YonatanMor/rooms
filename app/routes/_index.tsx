@@ -4,7 +4,7 @@ import Flags from "~/components/app/flags"
 import EventDialog from "~/components/app/event-dialog"
 import { Theme } from "@radix-ui/themes"
 import { useState } from "react"
-import ContextProvider from "~/appContext"
+import ContextProvider from "~/app-context"
 
 export default function Index() {
   const [showMenu, setShowMenu] = useState<boolean>(false)

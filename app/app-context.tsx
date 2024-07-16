@@ -1,18 +1,7 @@
-import {
-  createContext,
-  useState,
-  ReactNode,
-  Dispatch,
-  SetStateAction,
-} from "react"
+import { createContext, useState, ReactNode } from "react"
 
-interface AppContextType {
-  showMenu: boolean
-  setShowMenu: Dispatch<SetStateAction<boolean>>
-}
-
-// export const AppContext = createContext<AppContextType | undefined>(undefined)
 export const AppContext = createContext({
+  // grabz says no need to type state setters. what should be inside create context parentheses
   showMenu: false,
   setShowMenu: (show: boolean) => {},
   showEventDialog: false,
@@ -31,13 +20,3 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
     </AppContext.Provider>
   )
 }
-
-// export const AppProvider = ({ children }) => {
-//   const [showMenu, setShowMenu] = useState(false);
-
-//   return (
-//     <AppContext.Provider value={{ showMenu, setShowMenu }}>
-//       {children}
-//     </AppContext.Provider>
-//   );
-// };
