@@ -6,17 +6,19 @@ import { RiAdminLine } from "react-icons/ri"
 import { SlLogout } from "react-icons/sl"
 import { GoGear } from "react-icons/go"
 import { NavLink } from "react-router-dom"
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import Logo from "~/components/common/logo"
 import { AppContext } from "~/app-context"
 
-export default function Menu() {
-  const { showMenu, setShowMenu } = useContext(AppContext)
+export default function Menu({showMenu, onClose}: {showMenu : boolean, onClose: () => void}) {
+  // const { showMenu, setShowMenu } = useContext(AppContext)
+  // const [showMenu, setShowMenu] = useState(false)
   const slideMenuVariants = {
     open: { x: 0 },
     closed: { x: "-100%" },
   }
 
+  console.log(showMenu)
   return (
     <AnimatePresence>
       {showMenu && (
@@ -31,18 +33,18 @@ export default function Menu() {
             damping: 40,
             stiffness: 400,
           }}
-          onClick={() => setShowMenu(false)}
-          className="absolute z-50 w-full h-full "
+          onClick={() => onClose()}
+          className="absolute z-50 h-full w-full "
         >
           <div
-            className="absolute z-50 w-[76%] h-full rounded-r-3xl bg-gradient-to-r from-menu-300 to-menu-400 text-3xl"
+            className="absolute z-50 h-full w-[76%] rounded-r-3xl bg-gradient-to-r from-menu-300 to-menu-400 text-3xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="w-3/4">
               <div className="flex items-center">
                 <div
-                  onClick={() => setShowMenu(false)}
-                  className="absolute w-10 h-8 flex justify-center items-center"
+                  onClick={() => onClose()}
+                  className="absolute flex h-8 w-10 items-center justify-center"
                 >
                   <MdArrowBackIosNew size={20} />
                 </div>
@@ -59,10 +61,10 @@ export default function Menu() {
                           className={`
                             ${
                               isActive ? "bg-menu-500" : ""
-                            } flex justify-start items-center h-10 rounded-r-full
+                            } flex h-10 items-center justify-start rounded-r-full
                           `}
                         >
-                          <span className="text-xl relative left-10">
+                          <span className="relative left-10 text-xl">
                             Today
                           </span>
                           <IoTodayOutline
@@ -80,10 +82,10 @@ export default function Menu() {
                         className={`
                             ${
                               isActive ? "bg-menu-500" : ""
-                            } flex justify-start items-center h-10 rounded-r-full
+                            } flex h-10 items-center justify-start rounded-r-full
                           `}
                       >
-                        <span className="text-xl relative left-10">
+                        <span className="relative left-10 text-xl">
                           Go to date
                         </span>
                         <LiaCalendarAlt
@@ -101,10 +103,10 @@ export default function Menu() {
                           className={`
                             ${
                               isActive ? "bg-menu-500" : ""
-                            } flex justify-start items-center h-10 rounded-r-full
+                            } flex h-10 items-center justify-start rounded-r-full
                           `}
                         >
-                          <span className="text-xl relative left-10">
+                          <span className="relative left-10 text-xl">
                             Admin
                           </span>
                           <RiAdminLine
@@ -123,10 +125,10 @@ export default function Menu() {
                           className={`
                             ${
                               isActive ? "bg-menu-500" : ""
-                            } flex justify-start items-center h-10 rounded-r-full
+                            } flex h-10 items-center justify-start rounded-r-full
                           `}
                         >
-                          <span className="text-xl relative left-10">
+                          <span className="relative left-10 text-xl">
                             Settings
                           </span>
                           <GoGear size={21} className="absolute left-[9px]" />
@@ -141,10 +143,10 @@ export default function Menu() {
                         className={`
                             ${
                               isActive ? "bg-menu-500" : ""
-                            } flex justify-start items-center h-10 rounded-r-full
+                            } flex h-10 items-center justify-start rounded-r-full
                           `}
                       >
-                        <span className="text-xl relative left-10">Logout</span>
+                        <span className="relative left-10 text-xl">Logout</span>
                         <SlLogout size={23} className="absolute left-1" />
                       </div>
                     )}

@@ -1,6 +1,6 @@
-import type {
-  LinksFunction,
-} from "@remix-run/node"
+import ContextProvider from "./app-context"
+import type { LinksFunction } from "@remix-run/node"
+import tailwind from "~/styles/tailwind.css?url"
 import {
   Links,
   Meta,
@@ -8,17 +8,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react"
-import tailwind from "~/styles/tailwind.css?url"
 
 export const links: LinksFunction = () => {
-  return [
-    { rel: "stylesheet", href: tailwind },
-  ]
+  return [{ rel: "stylesheet", href: tailwind }]
 }
 
 export default function App() {
   return (
-<html lang="en" dir="ltr" className="h-full">
+    <html lang="en" dir="ltr" className="h-full">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -26,7 +23,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
+        <ContextProvider>
+          <Outlet />
+        </ContextProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

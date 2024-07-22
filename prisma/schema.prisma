@@ -7,3 +7,25 @@ generator client {
   provider = "prisma-client-js"
 }
 
+model User {
+  id        String  @id @default(uuid())
+  email     String  @unique
+  firstName String
+  lastName  String
+  isAdmin   Boolean
+  events    Event[]
+}
+
+model Event {
+  id         String   @id @default(cuid())
+  type       String
+  tytle      String
+  time       Int
+  duratiion  Int
+  note       String
+  owner      String
+  createdAt  DateTime @default(now())
+  enentOwner User?    @relation(fields: [usersId], references: [id])
+  usersId    String?
+  updatedAt  DateTime @updatedAt
+}

@@ -13,7 +13,7 @@ export default {
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
         btn: { 300: "#4793AF" },
         text: { gray: { 100: "#9F9898", 200: "#7D7B8A", 300: "#4E4E4E" } },
-        table: {100: "#B0A695", 200: "#EBE3D5",  },
+        table: { 100: "#B0A695", 200: "#EBE3D5" },
       },
       fontSize: {
         xs: "12px",

@@ -2,7 +2,7 @@ import { useContext } from "react"
 import { AppContext } from "~/app-context"
 
 export default function Table() {
-  const { showEventDialog, setShowEventDialog } = useContext(AppContext)
+  const { setShowEventDialog } = useContext(AppContext)
 
   const handleEvet = () => {
     setShowEventDialog(true)
@@ -66,31 +66,31 @@ export default function Table() {
     "Climbing",
     "Yoga",
     "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Yoga",
-    "Spinning",
-    "Climbing",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
+    // "Yoga",
+    // "Spinning",
+    // "Climbing",
   ]
   let key = 0
 
@@ -127,26 +127,26 @@ export default function Table() {
   const table = [...tableHours, ...tableRows.flat()]
 
   return (
-    <div className="flex flex-col h-[89dvh] mb-2 ml-1">
-      <h2 className="text-center text-text-gray-100 text-lg ">
+    <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
+      <h2 className="text-center text-lg text-text-gray-100 ">
         Monday 31 March 2025
       </h2>
 
-      <div className="bg-white overflow-x-auto overflow-y-auto">
+      <div className="overflow-x-auto overflow-y-auto bg-white">
         <div
-          className={`grid gap-1 w-max h-max`}
+          className={`grid h-max w-max gap-1`}
           style={{
             gridTemplateColumns: `repeat(${hours.length}, minmax(5rem, auto))`,
             gridTemplateRows: ` 20px repeat(${classrooms.length + 1}, minmax(3rem, 1fr))`,
           }}
         >
-          <div className="w-full h-[24px] absolute z-10 bg-white"></div>
-          <div className="bg-white absolute z-30 h-6 w-[84px] left-0"></div>
+          <div className="absolute z-10 h-[24px] w-full bg-white"></div>
+          <div className="absolute left-0 z-30 h-6 w-[84px] bg-white"></div>
           {table.map((cell) => (
             <div
               key={cell.id}
               onClick={handleEvet}
-              className={`${cell.style} flex justify-center items-center rounded-md`}
+              className={`${cell.style} flex items-center justify-center rounded-md`}
             >
               {cell.title}
             </div>

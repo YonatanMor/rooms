@@ -1,23 +1,23 @@
 export default function Flags() {
   return (
-    <div className="flex justify-between mt-auto">
-      <div className="flex items-center mx-1 ">
-        <div className="h-5 w-5 mr-1 bg-flag-yellow rounded-sm" />
+    <div className="flex justify-between">
+      <div className="mx-1 flex items-center ">
+        <div className="mr-1 h-5 w-5 rounded-sm bg-flag-yellow" />
         <span className="text-lg">Rehearsal</span>
       </div>
 
-      <div className="flex items-center mx-1">
-        <div className="h-5 w-5 mr-1 bg-flag-red rounded-sm" />
+      <div className="mx-1 flex items-center">
+        <div className="mr-1 h-5 w-5 rounded-sm bg-flag-red" />
         <span className="text-lg">Lesson</span>
       </div>
 
-      <div className="flex items-center mx-1">
-        <div className="h-5 w-5 mr-1 bg-flag-green rounded-sm" />
+      <div className="mx-1 flex items-center">
+        <div className="mr-1 h-5 w-5 rounded-sm bg-flag-green" />
         <span className="text-lg">Event</span>
       </div>
 
-      <div className="flex items-center mx-1">
-        <div className="h-5 w-5 mr-1 bg-flag-blue rounded-sm" />
+      <div className="mx-1 flex items-center">
+        <div className="mr-1 h-5 w-5 rounded-sm bg-flag-blue" />
         <span className="text-lg">Holiday</span>
       </div>
     </div>
