@@ -1,16 +1,20 @@
-import { motion, AnimatePresence } from "framer-motion"
-import { MdArrowBackIosNew } from "react-icons/md"
-import { LiaCalendarAlt } from "react-icons/lia"
+import { AnimatePresence, motion } from "framer-motion"
+import { GoGear } from "react-icons/go"
 import { IoTodayOutline } from "react-icons/io5"
+import { LiaCalendarAlt } from "react-icons/lia"
+import { MdArrowBackIosNew } from "react-icons/md"
 import { RiAdminLine } from "react-icons/ri"
 import { SlLogout } from "react-icons/sl"
-import { GoGear } from "react-icons/go"
 import { NavLink } from "react-router-dom"
-import { useContext, useState } from "react"
 import Logo from "~/components/common/logo"
-import { AppContext } from "~/app-context"
 
-export default function Menu({showMenu, onClose}: {showMenu : boolean, onClose: () => void}) {
+export default function Menu({
+  showMenu,
+  onClose,
+}: {
+  showMenu: boolean
+  onClose: () => void
+}) {
   // const { showMenu, setShowMenu } = useContext(AppContext)
   // const [showMenu, setShowMenu] = useState(false)
   const slideMenuVariants = {
@@ -18,7 +22,6 @@ export default function Menu({showMenu, onClose}: {showMenu : boolean, onClose: 
     closed: { x: "-100%" },
   }
 
-  console.log(showMenu)
   return (
     <AnimatePresence>
       {showMenu && (

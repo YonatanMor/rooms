@@ -3,11 +3,11 @@ import { createContext, useState, ReactNode } from "react"
 export const AppContext = createContext({
   // grabz says no need to type state setters. what should be inside create context parentheses
   showMenu: false,
-  setShowMenu: (show: boolean) => {},
+  setShowMenu: (_show: boolean) => {},
   showEventDialog: false,
-  setShowEventDialog: (show: boolean) => {},
+  setShowEventDialog: (_show: boolean) => {},
   isDark: false,
-  setIsDark: (show: boolean) => {},
+  setIsDark: (_show: boolean) => {},
 })
 
 export default function ContextProvider({ children }: { children: ReactNode }) {

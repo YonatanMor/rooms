@@ -1,22 +1,11 @@
-import { motion, AnimatePresence } from "framer-motion"
+import { Form } from "@remix-run/react"
+import { AnimatePresence, motion } from "framer-motion"
 import { useContext } from "react"
 import { AppContext } from "~/app-context"
-import { Form, useActionData } from "@remix-run/react"
-import { ActionFunction } from "@remix-run/node"
-import prisma from "../../../prisma/seed"
-// import type { ActionFunction } from "remix";
 
 const slideMenuVariants = {
   open: { y: 0 },
   closed: { y: "100%" },
-}
-
-export const action: ActionFunction = async (request)=> {
-  let formData = await request.formData()
-  console.log(formData)
-  // let name = formData.get("name")
-  // let email = formData.get("email")
-  // let message = formData.get("message")
 }
 
 export default function EventDialog() {
@@ -70,15 +59,12 @@ export default function EventDialog() {
                   name="title"
                   id="title"
                 />
-                <select name="type" id="type">
-                  <option disabled selected>
-                    Event type
-                  </option>
+                <select name="type" id="type" defaultValue={"Event type"}>
                   <option value="event">Event</option>
                   <option value="rehearsal">Rehearsal</option>
                   <option value="lesson">Lesson</option>
                 </select>
-                <select name="type" id="type">
+                {/* <select name="type" id="type">
                   <option disabled selected>
                     Room
                   </option>
@@ -101,7 +87,7 @@ export default function EventDialog() {
                   <option value="event">Event</option>
                   <option value="rehearsal">Rehearsal</option>
                   <option value="lesson">Lesson</option>
-                </select>
+                </select> */}
               </Form>
             </div>
           </div>
@@ -110,15 +96,3 @@ export default function EventDialog() {
     </AnimatePresence>
   )
 }
-
-// <label for="pet-select">Choose a pet:</label>
-
-// <select name="pets" id="pet-select">
-// <option value="">--Please choose an option--</option>
-// <option value="dog">Dog</option>
-// <option value="cat">Cat</option>
-// <option value="hamster">Hamster</option>
-// <option value="parrot">Parrot</option>
-// <option value="spider">Spider</option>
-// <option value="goldfish">Goldfish</option>
-// </select>

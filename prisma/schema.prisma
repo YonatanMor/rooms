@@ -13,19 +13,14 @@ model User {
   firstName String
   lastName  String
   isAdmin   Boolean
-  events    Event[]
 }
 
 model Event {
-  id         String   @id @default(cuid())
-  type       String
-  tytle      String
-  time       Int
-  duratiion  Int
-  note       String
-  owner      String
-  createdAt  DateTime @default(now())
-  enentOwner User?    @relation(fields: [usersId], references: [id])
-  usersId    String?
-  updatedAt  DateTime @updatedAt
+  id        String   @id @default(cuid())
+  type      String
+  title     String
+  // time       Int
+  // note       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

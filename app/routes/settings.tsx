@@ -1,10 +1,10 @@
-import TopBar from "~/components/app/top-bar"
 import { useContext, useEffect, useRef } from "react"
 import { AppContext } from "~/app-context"
+import TopBar from "~/components/app/top-bar"
 
 export default function Index() {
-  const { showMenu, setShowMenu, isDark, setIsDark } = useContext(AppContext)
-
+  const { setShowMenu, isDark, setIsDark } = useContext(AppContext)
+ 
   const x = useRef(0)
 
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function Index() {
   return (
     <div
       onClick={() => setShowMenu(false)}
-      className={`flex flex-col h-screen ${isDark ? "bg-black" : ""}`}
+      className={`flex h-screen flex-col ${isDark ? "bg-black" : ""}`}
     >
       <TopBar />
       {/* <div className="">
@@ -41,21 +41,21 @@ export default function Index() {
           </div> */}
 
       <div className="ml-3 mt-5">
-        <span className="text-xl ml-2">Theme</span>
+        <span className="ml-2 text-xl">Theme</span>
         <div onClick={() => setIsDark(false)} className="flex items-center">
           <div
-            className={`h-4 w-4 mx-2 rounded-full border-2 border-black ${isDark ? "border-white bg-black" : "border-black bg-black"}`}
+            className={`mx-2 h-4 w-4 rounded-full border-2 border-black ${isDark ? "border-white bg-black" : "border-black bg-black"}`}
           ></div>
           <span>Light</span>
         </div>
         <div onClick={() => setIsDark(true)} className="flex items-center">
           <div
-            className={`h-4 w-4 mx-2 rounded-full border-2 border-black ${isDark ? "border-white bg-white" : "border-black bg-white"}`}
+            className={`mx-2 h-4 w-4 rounded-full border-2 border-black ${isDark ? "border-white bg-white" : "border-black bg-white"}`}
           ></div>
           <span>Dark</span>
         </div>
       </div>
-      <span className="text-3xl m-4 bg-red-300">
+      <span className="m-4 bg-red-300 text-3xl">
         {isDark ? "true" : "false"}
       </span>
     </div>
