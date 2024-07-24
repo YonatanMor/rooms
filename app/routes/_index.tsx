@@ -1,19 +1,23 @@
 import { Theme } from "@radix-ui/themes"
-import { ActionFunctionArgs, redirect } from "@remix-run/server-runtime"
+import { useLoaderData } from "@remix-run/react"
+import { ActionFunctionArgs, json } from "@remix-run/server-runtime"
+import { useState } from "react"
 import { getFormDataOrFail } from "remix-params-helper"
 import { z } from "zod"
 import EventDialog from "~/components/app/event-dialog"
 import Flags from "~/components/app/flags"
 import Table from "~/components/app/table"
 import TopBar from "~/components/app/top-bar"
+import { db } from "~/db.server"
 
 // pull data from DB. action and loader must be in a route component
-// export async function loader() {
-//   const user = await db.user.findFirst()
-//   return json({ foo: 1, user })
-// }
+export async function loader() {
+  const events = await db.event.findMany()
+  return json({ events })
+}
 
 export async function action({ request }: ActionFunctionArgs) {
+  // console.log(request)
   // const formData = await request.formData()
 
   // const title = formData.get("title") as string
@@ -21,28 +25,39 @@ export async function action({ request }: ActionFunctionArgs) {
 
   // --------
 
-  const schema = z.object({
-    title: z.string(),
-    type: z.string(),
-  })
-  // .strict()
+  const schema = z
+    .object({
+      title: z.string(),
+      type: z.enum(["event", "rehearsal", "lesson"]),
+      hour: z.string().min(5).max(5),
+      classroom: z.string(),
+      note: z.string(),
+      duration: z.number()
+    })
+    .strict()
 
-  const parsedFormData = await getFormDataOrFail(request, schema) //used in the react component
-  return redirect("/go-to-date")
+  try {
+    const parsedFormData = await getFormDataOrFail(request, schema) //used in the react component
+    await db.event.create({ data: parsedFormData })
+    return { success: true, parsedFormData }
+  } catch (error) {
+    console.log({ success: false, error })
+    return json({ success: false, error: error }, { status: 400 })
+  }
 }
 
 export default function Index() {
-  // const data = useLoaderData<typeof loader>()
-
-  // console.log(data)
+  const { events } = useLoaderData<typeof loader>()
+  const [cellData, setCellData] = useState(null)
+  // console.log(events)
 
   return (
     <Theme>
       <div className="flex h-screen flex-col">
         <TopBar />
-        <Table />
+        <Table dbEvents={events} setCellData={setCellData} />
         <Flags />
-        <EventDialog />
+        <EventDialog cellData={cellData} dbEvents={events} />
       </div>
     </Theme>
   )

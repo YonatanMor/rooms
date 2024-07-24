@@ -1,10 +1,14 @@
 import { useContext } from "react"
+import { v4 as uuid } from "uuid"
 import { AppContext } from "~/app-context"
 
-export default function Table() {
+export default function Table({ dbEvents, setCellData }) {
   const { setShowEventDialog } = useContext(AppContext)
+  console.log("db events: ", dbEvents)
 
-  const handleEvet = () => {
+  const handleEvet = (cell) => {
+    console.log(cell)
+    setCellData(cell)
     setShowEventDialog(true)
   }
 
@@ -64,8 +68,8 @@ export default function Table() {
     "Yoga",
     "Spinning",
     "Climbing",
-    "Yoga",
-    "Spinning",
+    "Bike",
+    "Rock",
     // "Climbing",
     // "Yoga",
     // "Spinning",
@@ -92,24 +96,26 @@ export default function Table() {
     // "Spinning",
     // "Climbing",
   ]
-  let key = 0
 
   const tableRows = classrooms.map((room) => {
     const restOfRow = []
     for (let i = 0; i < hours.length - 1; ++i) {
+      const event = dbEvents.find(
+        (e) => e.classroom === room && e.hour === hours[i + 1],
+      )
       restOfRow.push({
-        title: "",
+        title: event ? event.title : "",
         hour: hours[i + 1],
         classroom: room,
-        id: key + 100,
+        key: uuid(),
         style: `bg-table-200 text-base `,
       })
-      key += 1
     }
     return [
       {
         title: room,
-        id: key + 10000,
+        classroom: room, //not sure i need it
+        key: uuid(),
         style: `bg-table-100 sticky left-0 text-base `,
       },
       ...restOfRow,
@@ -118,14 +124,16 @@ export default function Table() {
 
   const tableHours = hours.map((hour, i) => {
     return {
+      classroom: "", //not sure i need it
       title: hour,
-      id: i,
+      hour: hour,
+      key: uuid(),
       style: `h-5 z-20 text-base sticky top-0`,
     }
   })
 
   const table = [...tableHours, ...tableRows.flat()]
-
+  // console.log(table)
   return (
     <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
       <h2 className="text-center text-lg text-text-gray-100 ">
@@ -142,15 +150,17 @@ export default function Table() {
         >
           <div className="absolute z-10 h-[24px] w-full bg-white"></div>
           <div className="absolute left-0 z-30 h-6 w-[84px] bg-white"></div>
-          {table.map((cell) => (
-            <div
-              key={cell.id}
-              onClick={handleEvet}
-              className={`${cell.style} flex items-center justify-center rounded-md`}
-            >
-              {cell.title}
-            </div>
-          ))}
+          {table.map((cell) => {
+            return (
+              <div
+                key={cell.key}
+                onClick={() => handleEvet(cell)}
+                className={`${cell.style} flex items-center justify-center rounded-md`}
+              >
+                {cell.title}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>
