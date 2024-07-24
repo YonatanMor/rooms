@@ -1,6 +1,6 @@
 import { Form } from "@remix-run/react"
 import { AnimatePresence, motion } from "framer-motion"
-import { useContext } from "react"
+import { useContext, useEffect, useState } from "react"
 import { AppContext } from "~/app-context"
 
 const slideMenuVariants = {
@@ -8,23 +8,76 @@ const slideMenuVariants = {
   closed: { y: "100%" },
 }
 
-
-
-export default function EventDialog({ cellData, dbEvents }) {
+export default function EventDialog({ clickedCell, dbEvents }) {
   const { showEventDialog, setShowEventDialog } = useContext(AppContext)
-  let displayEvent
-  console.log("dbEvents: ", dbEvents)
-  console.log("cellData: ", cellData)
-  if (dbEvents && cellData) {
-    displayEvent = dbEvents.find(
-      (e) => e.hour === cellData.hour && e.classroom === cellData.classroom,
-    )
-    console.log(displayEvent)
+  const [displayEvent, setDisplayEvent] = useState({
+    classroom: "",
+    createdAt: "d",
+    hour: "d",
+    id: "d",
+    title: "d",
+    type: "d",
+    updatedAt: "d",
+  })
+
+  useEffect(() => {
+    if (dbEvents && clickedCell) {
+      const val = dbEvents.find(
+        (e) =>
+          e.hour === clickedCell.hour && e.classroom === clickedCell.classroom,
+      )
+      setDisplayEvent(
+        val
+          ? val
+          : {
+              classroom: "",
+              hour: "",
+              id: "",
+              title: "",
+              type: "",
+            },
+      )
+    }
+  }, [clickedCell])
+
+  const handleTitleChange = (e) => {
+    setDisplayEvent((prev) => {
+      if (prev) {
+        return { ...prev, title: e.target.value }
+      } else
+        return {
+          // prev,
+          classroom: "",
+          createdAt: "",
+          hour: "",
+          id: "",
+          title: "",
+          type: "",
+          updatedAt: "",
+        }
+    })
   }
 
-// const handleChange = (e)=>{}
+  const handleTypeChange = (e) => {
+    setDisplayEvent((prev) => {
+      if (prev) {
+        return { ...prev, type: e.target.value }
+      } else {
+        return prev
+      }
+    })
+  }
 
-  console.log(cellData)
+  const handleNoteChange = (e) => {
+    setDisplayEvent((prev) => {
+      if (prev) {
+        return { ...prev, note: e.target.value }
+      } else {
+        return prev
+      }
+    })
+  }
+
   return (
     <AnimatePresence>
       {showEventDialog && (
@@ -70,7 +123,9 @@ export default function EventDialog({ cellData, dbEvents }) {
               >
                 <input
                   type="text"
+                  // value={"gdfg"}
                   value={displayEvent ? displayEvent.title : ""}
+                  onChange={handleTitleChange}
                   placeholder="event title"
                   name="title"
                   id="title"
@@ -79,9 +134,13 @@ export default function EventDialog({ cellData, dbEvents }) {
                 <select
                   name="type"
                   id="type"
-                  defaultValue={"Event type"}
+                  // defaultValue={"Event type"}
                   value={displayEvent ? displayEvent.type : ""}
+                  onChange={handleTypeChange}
                 >
+                  <option value="" disabled>
+                    Select a type
+                  </option>
                   <option value="event">Event</option>
                   <option value="rehearsal">Rehearsal</option>
                   <option value="lesson">Lesson</option>
@@ -92,7 +151,7 @@ export default function EventDialog({ cellData, dbEvents }) {
                   type="text"
                   id="hour"
                   readOnly
-                  value={cellData.hour}
+                  value={clickedCell.hour}
                 />
 
                 <input
@@ -100,12 +159,24 @@ export default function EventDialog({ cellData, dbEvents }) {
                   type="text"
                   id="classroom"
                   readOnly
-                  value={cellData.classroom}
+                  value={clickedCell.classroom}
+                  // onChange={handleChange}
+                />
+                <input
+                  name="duration"
+                  type="text"
+                  id="duration"
+                  readOnly
+                  value={"30 min"}
                   // onChange={handleChange}
                 />
 
-                <textarea name="notes" id="notes" rows="3" 
-                // value={displayEvent?displayEvent.note} 
+                <textarea
+                  name="note"
+                  id="note"
+                  rows={3}
+                  value={displayEvent ? displayEvent.note : ""}
+                  onChange={handleNoteChange}
                 />
               </Form>
             </div>

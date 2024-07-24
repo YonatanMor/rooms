@@ -32,7 +32,7 @@ export async function action({ request }: ActionFunctionArgs) {
       hour: z.string().min(5).max(5),
       classroom: z.string(),
       note: z.string(),
-      duration: z.number()
+      duration: z.string(),
     })
     .strict()
 
@@ -47,17 +47,17 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Index() {
-  const { events } = useLoaderData<typeof loader>()
-  const [cellData, setCellData] = useState(null)
+  const { events } = useLoaderData<typeof loader>() // should it be inside a useEffect to prevent redundant calls to DB?
+  const [clickedCell, setClickedCell] = useState(null)
   // console.log(events)
 
   return (
     <Theme>
       <div className="flex h-screen flex-col">
         <TopBar />
-        <Table dbEvents={events} setCellData={setCellData} />
+        <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />
-        <EventDialog cellData={cellData} dbEvents={events} />
+        <EventDialog clickedCell={clickedCell} dbEvents={events} />
       </div>
     </Theme>
   )

@@ -21,7 +21,7 @@ model Event {
   title     String
   hour      String
   classroom String
-  duration  Int?
+  duration  String
   note      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

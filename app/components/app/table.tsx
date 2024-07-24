@@ -2,13 +2,13 @@ import { useContext } from "react"
 import { v4 as uuid } from "uuid"
 import { AppContext } from "~/app-context"
 
-export default function Table({ dbEvents, setCellData }) {
+export default function Table({ dbEvents, setClickedCell }) {
   const { setShowEventDialog } = useContext(AppContext)
-  console.log("db events: ", dbEvents)
+  // console.log("db events: ", dbEvents)
 
-  const handleEvet = (cell) => {
-    console.log(cell)
-    setCellData(cell)
+  const handleClickedCell = (cell) => {
+    // console.log(cell)
+    setClickedCell(cell)
     setShowEventDialog(true)
   }
 
@@ -154,7 +154,7 @@ export default function Table({ dbEvents, setCellData }) {
             return (
               <div
                 key={cell.key}
-                onClick={() => handleEvet(cell)}
+                onClick={() => handleClickedCell(cell)}
                 className={`${cell.style} flex items-center justify-center rounded-md`}
               >
                 {cell.title}
