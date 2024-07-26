@@ -2,6 +2,7 @@ import { Form } from "@remix-run/react"
 import { AnimatePresence, motion } from "framer-motion"
 import { useContext, useEffect, useState } from "react"
 import { AppContext } from "~/app-context"
+import Select from "../common/select"
 
 const slideMenuVariants = {
   open: { y: 0 },
@@ -18,6 +19,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
     title: "d",
     type: "d",
     updatedAt: "d",
+    duration: "d",
   })
 
   useEffect(() => {
@@ -35,6 +37,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
               id: "",
               title: "",
               type: "",
+              duration: "",
             },
       )
     }
@@ -54,19 +57,20 @@ export default function EventDialog({ clickedCell, dbEvents }) {
           title: "",
           type: "",
           updatedAt: "",
+          duration: "",
         }
     })
   }
 
-  const handleTypeChange = (e) => {
-    setDisplayEvent((prev) => {
-      if (prev) {
-        return { ...prev, type: e.target.value }
-      } else {
-        return prev
-      }
-    })
-  }
+  // const handleTypeChange = (e) => {
+  //   setDisplayEvent((prev) => {
+  //     if (prev) {
+  //       return { ...prev, type: e.target.value }
+  //     } else {
+  //       return prev
+  //     }
+  //   })
+  // }
 
   const handleNoteChange = (e) => {
     setDisplayEvent((prev) => {
@@ -95,13 +99,13 @@ export default function EventDialog({ clickedCell, dbEvents }) {
           onClick={() => setShowEventDialog(false)}
         >
           <div
-            className="h-[93%] rounded-t-3xl bg-slate-400"
+            className="flex h-[93%] flex-col items-center  rounded-t-3xl bg-gradient-to-t from-[#484a4e] to-[#b9bcc1]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between">
+            <div className="flex w-full items-center justify-between">
               <div
                 onClick={() => setShowEventDialog(false)}
-                className="relative -top-1.5 ml-3 text-7xl font-extralight"
+                className="relative -top-1.5 ml-3 text-7xl font-extralight text-text-gray-300"
               >
                 &times;
               </div>
@@ -115,11 +119,11 @@ export default function EventDialog({ clickedCell, dbEvents }) {
               </button>
             </div>
 
-            <div className="flex justify-center ">
+            <div className="relative flex h-[80%] w-3/4 justify-center bg-black">
               <Form
                 id="event_dialog"
                 method="POST"
-                className="mt-4 flex h-[300px]  w-3/4 flex-col items-stretch justify-start gap-2 bg-red-300"
+                className="mt-4 flex h-[300px] w-3/4 flex-col items-stretch justify-start gap-2 "
               >
                 <input
                   type="text"
@@ -131,7 +135,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   id="title"
                 />
 
-                <select
+                {/* <select
                   name="type"
                   id="type"
                   // defaultValue={"Event type"}
@@ -144,15 +148,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   <option value="event">Event</option>
                   <option value="rehearsal">Rehearsal</option>
                   <option value="lesson">Lesson</option>
-                </select>
-
-                <input
-                  name="hour"
-                  type="text"
-                  id="hour"
-                  readOnly
-                  value={clickedCell.hour}
-                />
+                </select> */}
 
                 <input
                   name="classroom"
@@ -162,13 +158,24 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   value={clickedCell.classroom}
                   // onChange={handleChange}
                 />
+
                 <input
-                  name="duration"
+                  name="hour"
                   type="text"
-                  id="duration"
+                  id="hour"
                   readOnly
-                  value={"30 min"}
-                  // onChange={handleChange}
+                  value={clickedCell.hour}
+                />
+
+                <Select
+                  inputId={"duration"}
+                  dbValue={displayEvent.duration}
+                  options={[
+                    { value: "0:30", disable: true },
+                    { value: "1:00", disable: false },
+                    { value: "1:30", disable: false },
+                    { value: "2:00", disable: false },
+                  ]}
                 />
 
                 <textarea
@@ -177,6 +184,17 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   rows={3}
                   value={displayEvent ? displayEvent.note : ""}
                   onChange={handleNoteChange}
+                />
+
+                <Select
+                  inputId={"type"}
+                  dbValue={displayEvent.type}
+                  options={[
+                    { value: "Type", disable: true },
+                    { value: "Event", disable: false },
+                    { value: "Rehearsal", disable: false },
+                    { value: "Lesson", disable: false },
+                  ]}
                 />
               </Form>
             </div>

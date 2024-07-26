@@ -8,17 +8,14 @@ export default function Index() {
   const x = useRef(0)
 
   useEffect(() => {
-    console.log(x.current)
     if (window && x.current > 1) {
       // localStorage.getItem("theme")
       localStorage.setItem("theme", isDark ? "true" : "false")
-      console.log(localStorage.getItem("theme"))
     }
     x.current += 1
   }, [isDark])
 
   // localStorage.getItem("theme")
-  // console.log(x ? JSON.parse(x) : "null")
 
   return (
     <div

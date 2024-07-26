@@ -17,7 +17,6 @@ export async function loader() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  // console.log(request)
   // const formData = await request.formData()
 
   // const title = formData.get("title") as string
@@ -28,7 +27,7 @@ export async function action({ request }: ActionFunctionArgs) {
   const schema = z
     .object({
       title: z.string(),
-      type: z.enum(["event", "rehearsal", "lesson"]),
+      type: z.enum(["Event", "Rehearsal", "Lesson"]),
       hour: z.string().min(5).max(5),
       classroom: z.string(),
       note: z.string(),
@@ -41,7 +40,6 @@ export async function action({ request }: ActionFunctionArgs) {
     await db.event.create({ data: parsedFormData })
     return { success: true, parsedFormData }
   } catch (error) {
-    console.log({ success: false, error })
     return json({ success: false, error: error }, { status: 400 })
   }
 }
@@ -49,11 +47,10 @@ export async function action({ request }: ActionFunctionArgs) {
 export default function Index() {
   const { events } = useLoaderData<typeof loader>() // should it be inside a useEffect to prevent redundant calls to DB?
   const [clickedCell, setClickedCell] = useState(null)
-  // console.log(events)
 
   return (
     <Theme>
-      <div className="flex h-screen flex-col">
+      <div className="flex h-screen flex-col ">
         <TopBar />
         <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />

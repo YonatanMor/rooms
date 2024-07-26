@@ -4,10 +4,8 @@ import { AppContext } from "~/app-context"
 
 export default function Table({ dbEvents, setClickedCell }) {
   const { setShowEventDialog } = useContext(AppContext)
-  // console.log("db events: ", dbEvents)
 
   const handleClickedCell = (cell) => {
-    // console.log(cell)
     setClickedCell(cell)
     setShowEventDialog(true)
   }
@@ -133,7 +131,6 @@ export default function Table({ dbEvents, setClickedCell }) {
   })
 
   const table = [...tableHours, ...tableRows.flat()]
-  // console.log(table)
   return (
     <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
       <h2 className="text-center text-lg text-text-gray-100 ">
