@@ -17,13 +17,6 @@ export async function loader() {
 }
 
 export async function action({ request }: ActionFunctionArgs) {
-  // const formData = await request.formData()
-
-  // const title = formData.get("title") as string
-  // const type = formData.get("type") as unknown as boolean
-
-  // --------
-
   const schema = z
     .object({
       title: z.string(),
@@ -36,8 +29,31 @@ export async function action({ request }: ActionFunctionArgs) {
     .strict()
 
   try {
-    const parsedFormData = await getFormDataOrFail(request, schema) //used in the react component
-    await db.event.create({ data: parsedFormData })
+    const parsedFormData = await getFormDataOrFail(request, schema)
+    // const method = parsedFormData.get("_method")
+    console.log("Form Data: ", parsedFormData)
+
+    const isEvent = await db.event.findFirst({
+      where: {
+        hour: parsedFormData.hour,
+        classroom: parsedFormData.classroom,
+      },
+    })
+
+    // console.log("isEvent: ", isEvent ? isEvent : "null")
+    if (isEvent) {
+      await db.event.update({
+        where: { id: isEvent.id },
+        data: {
+          title: parsedFormData.title,
+          type: parsedFormData.type,
+          note: parsedFormData.note,
+          duration: parsedFormData.duration,
+        },
+      })
+    } else {
+      await db.event.create({ data: parsedFormData })
+    }
     return { success: true, parsedFormData }
   } catch (error) {
     return json({ success: false, error: error }, { status: 400 })

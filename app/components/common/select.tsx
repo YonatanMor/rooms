@@ -1,7 +1,7 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
 
-export default function Select({ options, inputId, dbValue }) {
+export default function Select({ options, inputId, dbValue, setHideForm }) {
   const [showOpts, setShowOpts] = useState(false)
   const [selected, setSelected] = useState()
 
@@ -10,6 +10,8 @@ export default function Select({ options, inputId, dbValue }) {
     setShowOpts(false)
   }
 
+  useEffect(() => setHideForm(showOpts), [showOpts])
+// fix the textarea data goming back form the DB, it have a issue where it shows the previous clicked cell 
   return (
     <>
       {!showOpts && (
@@ -38,7 +40,7 @@ export default function Select({ options, inputId, dbValue }) {
       )}
 
       {showOpts && (
-        <div className="absolute left-0 top-12 flex w-full flex-col items-center gap-3 shadow-slate-200">
+        <div className="absolute z-10 flex w-full flex-col items-center gap-3 ">
           {options.slice(1).map((opt, i) => {
             return (
               // <input
@@ -53,7 +55,7 @@ export default function Select({ options, inputId, dbValue }) {
               // />
 
               <div
-                className=" flex h-10 w-full items-center justify-start rounded-lg border-4 border-table-100 bg-white pl-3 text-2xl text-text-gray-400"
+                className=" flex h-16 w-full items-center justify-start rounded-3xl border-4 border-table-100 bg-white pl-3 text-2xl text-text-gray-400"
                 onClick={() => handleSelecion(opt.value)}
                 key={i}
               >

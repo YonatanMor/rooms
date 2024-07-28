@@ -14,7 +14,7 @@ export default function Index() {
     }
     x.current += 1
   }, [isDark])
-
+// (window.matchMedia('(prefers-color-scheme: dark)').matches) // check the prefers of the browser for dark mode
   // localStorage.getItem("theme")
 
   return (

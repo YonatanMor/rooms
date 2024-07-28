@@ -5,7 +5,7 @@ import Menu from "./menu"
 
 export default function TopBar() {
   // const {setShowMenu} = useContext(AppContext)
-  const [showMenu, setShowMenu] = useState(false)
+  const [showMenu, setShowMenu] = useState(false) // there is an exsect same state in app-context
 
   return (
     <>
