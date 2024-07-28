@@ -21,23 +21,8 @@ export default function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
-
-        <script>
-    (function() {
-      const selectedTheme = localStorage.getItem('selected-theme')
-      if (selectedTheme === 'dark') {
-        document.documentElement.classList.add('dark')
-      }
-    })();
-  </script>
-
       </head>
       <body>
-
-     
-
-
-
         <ContextProvider>
           <Outlet />
         </ContextProvider>
