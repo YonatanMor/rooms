@@ -1,88 +1,30 @@
 import { Form } from "@remix-run/react"
 import { AnimatePresence, motion } from "framer-motion"
-import { useContext, useEffect, useState } from "react"
+import { useContext, useState } from "react"
 import { AppContext } from "~/app-context"
+import { useIndexData } from "~/utils/use-matches"
 import Select from "../common/select"
 
 const slideMenuVariants = {
   open: { y: 0 },
   closed: { y: "100%" },
 }
-
-export default function EventDialog({ clickedCell, dbEvents }) {
+// the hours cells are clickable
+export default function EventDialog({ clickedCell }) {
   const { showEventDialog, setShowEventDialog } = useContext(AppContext)
   const [hideForm, setHideForm] = useState(false)
-  const [displayEvent, setDisplayEvent] = useState({
-    classroom: "",
-    // createdAt: "",
-    hour: "",
-    id: "",
-    title: "",
-    type: "",
-    // updatedAt: "",
-    duration: "",
-    note: "",
-  })
 
-  useEffect(() => {
-    if (dbEvents && clickedCell) {
-      const event = dbEvents.find(
-        (e) =>
-          e.hour === clickedCell.hour && e.classroom === clickedCell.classroom,
-      )
-      setDisplayEvent(
-        event
-          ? event
-          : {
-              classroom: "",
-              hour: "",
-              id: "",
-              title: "",
-              type: "",
-              duration: "",
-              note: "",
-            },
-      )
-    }
-  }, [clickedCell])
+  let displayEvent
+  const { events } = useIndexData()
 
-  const handleTitleChange = (e) => {
-    setDisplayEvent((prev) => {
-      if (prev) {
-        return { ...prev, title: e.target.value }
-      } else
-        return {
-          // prev,
-          classroom: "",
-          createdAt: "",
-          hour: "",
-          id: "",
-          title: "",
-          type: "",
-          updatedAt: "",
-          duration: "",
-        }
-    })
-  }
-
-  // const handleTypeChange = (e) => {
-  //   setDisplayEvent((prev) => {
-  //     if (prev) {
-  //       return { ...prev, type: e.target.value }
-  //     } else {
-  //       return prev
-  //     }
-  //   })
-  // }
-
-  const handleNoteChange = (e) => {
-    setDisplayEvent((prev) => {
-      if (prev) {
-        return { ...prev, note: e.target.value }
-      } else {
-        return prev
-      }
-    })
+  console.log({ clickedCell })
+  if (clickedCell) {
+    displayEvent = events.find(
+      (event) =>
+        event.hour === clickedCell.hour &&
+        event.classroom === clickedCell.classroom,
+    )
+    // console.log(displayEvent)
   }
 
   return (
@@ -134,10 +76,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                 <input
                   maxLength={30}
                   type="text"
-                  defaultValue={displayEvent.title}
-                  // defaultValue={displayEvent.title}
-                  // value={displayEvent ? displayEvent.title : ""}
-                  // onChange={handleTitleChange}
+                  defaultValue={displayEvent?.title}
                   placeholder="event title"
                   name="title"
                   id="title"
@@ -148,7 +87,9 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   type="text"
                   id="classroom"
                   readOnly
-                  value={clickedCell.classroom}
+                  defaultValue={
+                    displayEvent?.classroom || clickedCell.classroom
+                  }
                 />
 
                 <input
@@ -156,13 +97,13 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                   type="text"
                   id="hour"
                   readOnly
-                  value={clickedCell.hour}
+                  defaultValue={displayEvent?.hour || clickedCell.hour}
                 />
 
                 <Select
                   setHideForm={setHideForm}
                   inputId={"duration"}
-                  dbValue={displayEvent.duration}
+                  dbValue={displayEvent?.duration}
                   options={[
                     { value: "0:30", disable: true },
                     { value: "1:00", disable: false },
@@ -174,7 +115,7 @@ export default function EventDialog({ clickedCell, dbEvents }) {
                 <Select
                   setHideForm={setHideForm}
                   inputId={"type"}
-                  dbValue={displayEvent.type}
+                  dbValue={displayEvent?.type}
                   options={[
                     { value: "Type", disable: true },
                     { value: "Event", disable: false },
@@ -185,28 +126,29 @@ export default function EventDialog({ clickedCell, dbEvents }) {
 
                 <textarea
                   name="note"
+                  placeholder="note..."
                   id="note"
                   rows={3}
-                  value={displayEvent ? displayEvent.note : ""}
-                  onChange={handleNoteChange}
+                  defaultValue={displayEvent?.note}
+                  // onChange={handleNoteChange}
                 />
               </Form>
             </div>
 
-            <Form id="delete_event" method="DELETE">
-              {displayEvent.id && (
+            {displayEvent?.id && (
+              <Form method="post">
+                <input type="hidden" name="eventId" value={displayEvent.id} />
                 <button
                   name="action"
-                  value={"action_delete"}
-                  // form="delete_event"
+                  value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
                   className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-flag-red"
                 >
                   Delete
                 </button>
-              )}
-            </Form>
+              </Form>
+            )}
           </div>
         </motion.div>
       )}

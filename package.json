@@ -50,6 +50,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1",
     "remix-params-helper": "^0.5.1",
+    "remix-typedjson": "^0.4.1",
     "tailwind-merge": "^2.3.0",
     "tiny-invariant": "^1.3.3",
     "tslib": "^2.4.1",

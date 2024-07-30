@@ -1,63 +1,81 @@
 import { Theme } from "@radix-ui/themes"
 import { useLoaderData } from "@remix-run/react"
-import { ActionFunctionArgs, json } from "@remix-run/server-runtime"
+import { ActionFunctionArgs } from "@remix-run/server-runtime"
 import { useState } from "react"
 import { getFormDataOrFail } from "remix-params-helper"
+import { typedjson, UseDataFunctionReturn } from "remix-typedjson"
 import { z } from "zod"
 import EventDialog from "~/components/app/event-dialog"
 import Flags from "~/components/app/flags"
 import Table from "~/components/app/table"
 import TopBar from "~/components/app/top-bar"
 import { db } from "~/db.server"
+import { namedAction } from "~/utils/named-action.server"
 
-// pull data from DB. action and loader must be in a route component
+export type IndexLoaderData = UseDataFunctionReturn<typeof loader>
+
 export async function loader() {
   const events = await db.event.findMany()
-  return json({ events })
+  return typedjson({ events })
 }
 
-export async function action({ request }: ActionFunctionArgs) {
-  const schema = z
-    .object({
-      title: z.string(),
-      type: z.enum(["Event", "Rehearsal", "Lesson"]),
-      hour: z.string().min(5).max(5),
-      classroom: z.string(),
-      note: z.string(),
-      duration: z.string(),
+export async function action(actionArgs: ActionFunctionArgs) {
+  return namedAction(actionArgs, {
+    action_delete,
+  })
+
+  async function action_delete({ request }: ActionFunctionArgs) {
+    const schema = z.object({
+      eventId: z.string(),
     })
-    .strict()
+    const { eventId } = await getFormDataOrFail(request, schema)
 
-  try {
-    const parsedFormData = await getFormDataOrFail(request, schema)
-    // const method = parsedFormData.get("_method")
-    console.log("Form Data: ", parsedFormData)
+    await db.event.delete({ where: { id: eventId } })
 
-    const isEvent = await db.event.findFirst({
-      where: {
-        hour: parsedFormData.hour,
-        classroom: parsedFormData.classroom,
-      },
-    })
-
-    // console.log("isEvent: ", isEvent ? isEvent : "null")
-    if (isEvent) {
-      await db.event.update({
-        where: { id: isEvent.id },
-        data: {
-          title: parsedFormData.title,
-          type: parsedFormData.type,
-          note: parsedFormData.note,
-          duration: parsedFormData.duration,
-        },
-      })
-    } else {
-      await db.event.create({ data: parsedFormData })
-    }
-    return { success: true, parsedFormData }
-  } catch (error) {
-    return json({ success: false, error: error }, { status: 400 })
+    return new Response()
   }
+
+  // const schema = z
+  //   .object({
+  //     title: z.string(),
+  //     type: z.enum(["Event", "Rehearsal", "Lesson"]),
+  //     hour: z.string().min(5).max(5),
+  //     classroom: z.string(),
+  //     note: z.string(),
+  //     duration: z.string(),
+  //   })
+  //   .strict()
+
+  // try {
+  //   const parsedFormData = await getFormDataOrFail(request, schema)
+  //   // const method = parsedFormData.get("_method")
+  //   console.log("Form Data: ", parsedFormData)
+
+  //   const isEvent = await db.event.findFirst({
+  //     where: {
+  //       hour: parsedFormData.hour,
+  //       classroom: parsedFormData.classroom,
+  //     },
+  //   })
+
+  //   // console.log("isEvent: ", isEvent ? isEvent : "null")
+  //   if (isEvent) {
+  //     await db.event.update({
+  //       where: { id: isEvent.id },
+  //       data: {
+  //         title: parsedFormData.title,
+  //         type: parsedFormData.type,
+  //         note: parsedFormData.note,
+  //         duration: parsedFormData.duration,
+  //       },
+  //     })
+  //   } else {
+  //     await db.event.create({ data: parsedFormData })
+  //   }
+  //   return typedjson({ success: true, parsedFormData })
+  // } catch (error) {
+  //   return typedjson({ success: false, error: error }, { status: 400 })
+  // }
 }
 
 export default function Index() {
