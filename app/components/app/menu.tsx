@@ -80,7 +80,7 @@ export default function Menu({
                     }}
                   </NavLink>
 
-                  <NavLink to="/go-to-date" end>
+                  {/* <NavLink to="/go-to-date" end>
                     {({ isActive }) => (
                       <div
                         className={`
@@ -98,9 +98,9 @@ export default function Menu({
                         />
                       </div>
                     )}
-                  </NavLink>
+                  </NavLink> */}
 
-                  <NavLink to="/admin-menu">
+                  {/* <NavLink to="/admin-menu">
                     {({ isActive }) => {
                       return (
                         <div
@@ -120,7 +120,7 @@ export default function Menu({
                         </div>
                       )
                     }}
-                  </NavLink>
+                  </NavLink> */}
 
                   <NavLink to="/settings">
                     {({ isActive }) => {
@@ -141,7 +141,7 @@ export default function Menu({
                     }}
                   </NavLink>
 
-                  <NavLink to="/login" end>
+                  {/* <NavLink to="/login" end>
                     {({ isActive }) => (
                       <div
                         className={`
@@ -154,8 +154,8 @@ export default function Menu({
                         <SlLogout size={23} className="absolute left-1" />
                       </div>
                     )}
-                  </NavLink>
-                </div>{" "}
+                  </NavLink> */}
+                </div>
               </nav>
             </div>
           </div>

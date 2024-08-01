@@ -17,14 +17,12 @@ export default function EventDialog({ clickedCell }) {
   let displayEvent
   const { events } = useIndexData()
 
-  // console.log({ clickedCell })
   if (clickedCell) {
     displayEvent = events.find(
       (event) =>
         event.hour === clickedCell.hour &&
         event.classroom === clickedCell.classroom,
     )
-    // console.log(displayEvent)
   }
 
   return (
@@ -50,40 +48,43 @@ export default function EventDialog({ clickedCell }) {
             className="flex h-[93%] flex-col items-center  rounded-t-3xl bg-gradient-to-t from-[#484a4e] to-[#b9bcc1]"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex w-full items-center justify-between">
+            <div className=" flex w-full items-center justify-between">
               <div
                 onClick={() => setShowEventDialog(false)}
-                className="relative -top-1.5 z-20 ml-3 text-7xl font-extralight text-text-grey-300"
+                className=" text-text-grey-300 relative -top-1.5 z-20 ml-3 text-7xl font-extralight"
               >
                 &times;
               </div>
               <button
-              name="action"
+                name="action"
                 form="create/update_event"
                 onClick={() => setShowEventDialog(false)}
                 type="submit"
-                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-text-grey-300"
+                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-[#A1DD70] text-xl"
                 value="action_write"
               >
                 Save
               </button>
             </div>
 
-            <div className="relative flex h-[80%] w-3/4 justify-center ">
+            <div className="text-text-grey-500 relative flex h-[80%] w-[90%] justify-center">
               <Form
                 id="create/update_event"
                 method="POST"
-                className="mt-4  flex h-[300px] w-full flex-col items-stretch justify-start gap-2" // add balck flex class
+                className=" flex w-full flex-col items-stretch justify-start" // add balck flex class
               >
+                <span className="pl-4 text-text-grey-600">Event title</span>
                 <input
                   maxLength={30}
                   type="text"
                   defaultValue={displayEvent?.title}
-                  placeholder="event title"
+                  placeholder="Event title"
                   name="title"
                   id="title"
+                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
                 />
 
+                <span className="pl-4 text-text-grey-600">Classroom</span>
                 <input
                   name="classroom"
                   type="text"
@@ -92,28 +93,33 @@ export default function EventDialog({ clickedCell }) {
                   defaultValue={
                     displayEvent?.classroom || clickedCell.classroom
                   }
+                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
                 />
 
+                <span className="pl-4 text-text-grey-600">Time</span>
                 <input
                   name="hour"
                   type="text"
                   id="hour"
                   readOnly
                   defaultValue={displayEvent?.hour || clickedCell.hour}
+                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"//migration & zod
                 />
 
+                <span className="pl-4">Duration</span>
                 <Select
                   setHideForm={setHideForm}
                   inputId={"duration"}
                   dbValue={displayEvent?.duration}
                   options={[
-                    { value: "0:30", disable: true },
+                    { value: "0:30", disable: false },
                     { value: "1:00", disable: false },
                     { value: "1:30", disable: false },
                     { value: "2:00", disable: false },
                   ]}
                 />
 
+                <span className="pl-4 text-text-grey-600">Type</span>
                 <Select
                   setHideForm={setHideForm}
                   inputId={"type"}
@@ -126,13 +132,14 @@ export default function EventDialog({ clickedCell }) {
                   ]}
                 />
 
+                <span className="pl-4 text-text-grey-600">Note</span>
                 <textarea
                   name="note"
                   placeholder="note..."
                   id="note"
                   rows={3}
                   defaultValue={displayEvent?.note}
-                  // onChange={handleNoteChange}
+                  className="rounded-3xl px-3 py-1 text-start text-2xl opacity-85"
                 />
               </Form>
             </div>
@@ -145,9 +152,10 @@ export default function EventDialog({ clickedCell }) {
                   value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
-                  className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-flag-purple"
+                  className="z-20 mr-5 flex h-10  w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
                 >
-                  Delete
+                  {/* <AiTwotoneDelete size={24}/> */}
+                  <span>Delete</span>
                 </button>
               </Form>
             )}

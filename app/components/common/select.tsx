@@ -5,9 +5,9 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
   const [showOpts, setShowOpts] = useState(false)
   const [selected, setSelected] = useState()
 
-  const handleSelecion = (val) => {
-    setSelected(val)
-    setShowOpts(false)
+  const handleSelecion = (opt) => {
+    if(!opt.disable){setSelected(opt.value)
+    setShowOpts(false)}
   }
 
   useEffect(() => setHideForm(showOpts), [showOpts])
@@ -19,8 +19,8 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
           onClick={() => setShowOpts(true)}
           className={`items-strech ${showOpts ? `hidden` : `flex`}  flex-col justify-center`}
         >
-          <div className=" flex h-10 items-center justify-start gap-3 rounded-lg bg-white ">
-            <div className="ml-3">
+          <div className=" flex h-14 items-center justify-start gap-3 rounded-full bg-white opacity-85 mb-2">
+            <div className="ml-3 absolute">
               <IoIosArrowDown size={25} color="grey" />
             </div>
           
@@ -29,7 +29,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
               name={inputId}
               id={inputId}
               type="text"
-              className="pointer-events-none w-full rounded-lg pb-1 text-2xl text-text-grey-400"
+              className="pointer-events-none w-full rounded-full pb-1 text-2xl  text-center"
               value={selected ? selected : dbValue ? dbValue : options[0].value}
             />
           </div>
@@ -41,8 +41,8 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
           {options.slice(1).map((opt, i) => {
             return (
               <div
-                className=" flex h-16 w-full items-center justify-start rounded-3xl border-4 border-table-100 bg-white pl-3 text-2xl text-text-grey-400"
-                onClick={() => handleSelecion(opt.value)}
+                className="flex h-16 w-full items-center justify-start rounded-3xl border-4 border-table-100 bg-white pl-3 text-2xl text-text-grey-400"
+                onClick={() => handleSelecion(opt)}
                 key={i}
               >
                 <span className="pl-5">{opt.value}</span>

@@ -6,28 +6,30 @@ export default function Table({ dbEvents, setClickedCell }) {
   const { setShowEventDialog } = useContext(AppContext)
 
   const handleClickedCell = (cell) => {
-    setClickedCell(cell)
-    setShowEventDialog(true)
+    if (cell.isClickable) {
+      setClickedCell(cell)
+      setShowEventDialog(true)
+    }
   }
 
   const hours = [
     "",
-    "00:00",
-    "00:30",
-    "01:00",
-    "01:30",
-    "02:00",
-    "02:30",
-    "03:00",
-    "03:30",
-    "04:00",
-    "04:30",
-    "05:00",
-    "05:30",
-    "06:00",
-    "06:30",
-    "07:00",
-    "07:30",
+    // "00:00",
+    // "00:30",
+    // "01:00",
+    // "01:30",
+    // "02:00",
+    // "02:30",
+    // "03:00",
+    // "03:30",
+    // "04:00",
+    // "04:30",
+    // "05:00",
+    // "05:30",
+    // "06:00",
+    // "06:30",
+    // "07:00",
+    // "07:30",
     "08:00",
     "08:30",
     "09:00",
@@ -47,38 +49,38 @@ export default function Table({ dbEvents, setClickedCell }) {
     "16:00",
     "16:30",
     "17:00",
-    "17:30",
-    "18:00",
-    "18:30",
-    "19:00",
-    "19:30",
-    "20:00",
-    "20:30",
-    "21:00",
-    "21:30",
-    "22:00",
-    "22:30",
-    "23:00",
-    "23:30",
+    // "17:30",
+    // "18:00",
+    // "18:30",
+    // "19:00",
+    // "19:30",
+    // "20:00",
+    // "20:30",
+    // "21:00",
+    // "21:30",
+    // "22:00",
+    // "22:30",
+    // "23:00",
+    // "23:30",
   ]
 
   const classrooms = [
-    "Herb Ellis Hall",
-    "Miles Davis Chamber",
-    "John Coltrane Space",
-    "Duke Ellington Honors",
-    "Louis Armstrong Tune",
-    "Charlie Parker Groove",
+    "Ellis Hall",
+    "Davis Chamber",
+    "Coltrane Space",
+    "Ellington Honors",
+    "Armstrong Tune",
+    "Parker Groove",
     "Sole Spin",
     "Sweet Swing",
     "R&B",
     "High Tunes",
     "Spirit Gospel",
     "Old Blues",
-    "B.B. King Vibes",
-    "Mike Stern Strings",
+    "King Vibes",
+    "Stern Strings",
   ]
-
+  // add cellColor colors to TWconfig
   const cellColor = {
     orange: `bg-gradient-to-r from-flag-orange to-[#F6DCAC]`,
     blue: `bg-gradient-to-r from-flag-blue to-[#96C9F4]`,
@@ -96,6 +98,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         hour: hours[i + 1],
         classroom: room,
         key: uuid(),
+        isClickable: true,
         style: `px-2 ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-[#EBE3D5]"} text-base `,
       })
     }
@@ -105,6 +108,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         classroom: room, //not sure i need it
         key: uuid(),
         style: `px-2 bg-table-100 sticky left-0 text-base`,
+        isClickable: false,
       },
       ...restOfRow,
     ]
@@ -117,15 +121,15 @@ export default function Table({ dbEvents, setClickedCell }) {
       hour: hour,
       key: uuid(),
       style: `h-5 z-20 text-base sticky top-0 text-text-grey-200`,
+      isClickable: false,
     }
   })
 
   const table = [...tableHours, ...tableRows.flat()]
+
   return (
     <div className="mb-2 ml-1 flex h-[89dvh] flex-col ">
-      <h2 className="text-center text-lg">
-        Monday 31 March 2025
-      </h2>
+      <h2 className="text-center text-lg">Monday 31 March 2025</h2>
 
       <div
         className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-[#ffffff] via-[#EEEDEB] to-[#F6F5F5]
@@ -139,13 +143,17 @@ export default function Table({ dbEvents, setClickedCell }) {
           }}
         >
           <div className="absolute z-10 h-[24px] w-full bg-white"></div>
-          <div className="absolute left-0 z-30 h-6 w-[84px] bg-white"></div>
+          <div className="absolute left-0 z-30 h-6 w-[144px] bg-white"></div>
           {table.map((cell) => {
             return (
               <div
                 key={cell.key}
                 onClick={() => handleClickedCell(cell)}
-                className={`${cell.style} flex items-center justify-center rounded-md text-text-grey-500`}
+                className={`${cell.style} text-text-grey-500 flex items-center justify-center rounded-md`}
+                style={cell.title ? { gridColumn: `span 2` } : {}}
+
+                // style={cell.title ? { columnSpan: '3' } : {}}
+                // style={cell.title==='yoni' ? { gridColumn: `span ${3}` } : {}}
               >
                 {cell.title}
               </div>
