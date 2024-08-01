@@ -29,11 +29,11 @@ export default function Menu() {
 
   return (
     <div>
-      <h2 className="ml-10 mt-3 text-text-gray-200 font-extrabold text-3xl">
+      <h2 className="ml-10 mt-3 text-text grey-200 font-extrabold text-3xl">
         Rooms
       </h2>
 
-      <div className="mt-6 text-text-gray-300">
+      <div className="mt-6 text-text-grey-300">
         <motion.div
           onClick={() => colorSelection(1)}
           className={`${

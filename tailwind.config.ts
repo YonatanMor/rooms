@@ -1,23 +1,25 @@
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
-  plugins: [],
+  plugins: [
+  ],
   theme: {
     extend: {
       colors: {
         flag: {
-          red: "#C80036",
-          yellow: "#FDE767",
+          purple: "#C738BD",
+          orange: "#F4A261",
           blue: "#3FA2F6",
-          green: "#81A263",
+          green: "#36BA98",
         },
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
         btn: { 300: "#4793AF" },
         text: {
-          gray: {
+          grey: {
             100: "#9F9898",
             200: "#7D7B8A",
             300: "#4E4E4E",
             400: "#808080",
+            500: "#373A40",
           },
         },
         table: { 100: "#B0A695", 200: "#EBE3D5" },

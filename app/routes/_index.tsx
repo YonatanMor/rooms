@@ -21,6 +21,7 @@ export async function loader() {
 
 export async function action(actionArgs: ActionFunctionArgs) {
   return namedAction(actionArgs, {
+    action_write,
     action_delete,
   })
 
@@ -35,47 +36,44 @@ export async function action(actionArgs: ActionFunctionArgs) {
     return new Response()
   }
 
-  // const schema = z
-  //   .object({
-  //     title: z.string(),
-  //     type: z.enum(["Event", "Rehearsal", "Lesson"]),
-  //     hour: z.string().min(5).max(5),
-  //     classroom: z.string(),
-  //     note: z.string(),
-  //     duration: z.string(),
-  //   })
-  //   .strict()
+  async function action_write({ request }: ActionFunctionArgs) {
+    const schema = z
+      .object({
+        title: z.string(),
+        type: z.enum(["Event", "Rehearsal", "Lesson"]),
+        hour: z.string().min(5).max(5),
+        classroom: z.string(),
+        note: z.string(),
+        duration: z.string(),
+      })
+      .strict()
 
-  // try {
-  //   const parsedFormData = await getFormDataOrFail(request, schema)
-  //   // const method = parsedFormData.get("_method")
-  //   console.log("Form Data: ", parsedFormData)
-
-  //   const isEvent = await db.event.findFirst({
-  //     where: {
-  //       hour: parsedFormData.hour,
-  //       classroom: parsedFormData.classroom,
-  //     },
-  //   })
-
-  //   // console.log("isEvent: ", isEvent ? isEvent : "null")
-  //   if (isEvent) {
-  //     await db.event.update({
-  //       where: { id: isEvent.id },
-  //       data: {
-  //         title: parsedFormData.title,
-  //         type: parsedFormData.type,
-  //         note: parsedFormData.note,
-  //         duration: parsedFormData.duration,
-  //       },
-  //     })
-  //   } else {
-  //     await db.event.create({ data: parsedFormData })
-  //   }
-  //   return typedjson({ success: true, parsedFormData })
-  // } catch (error) {
-  //   return typedjson({ success: false, error: error }, { status: 400 })
-  // }
+    try {
+      const parsedFormData = await getFormDataOrFail(request, schema)
+      const isEvent = await db.event.findFirst({
+        where: {
+          hour: parsedFormData.hour,
+          classroom: parsedFormData.classroom,
+        },
+      })
+      if (isEvent) {
+        await db.event.update({
+          where: { id: isEvent.id },
+          data: {
+            title: parsedFormData.title,
+            type: parsedFormData.type,
+            note: parsedFormData.note,
+            duration: parsedFormData.duration,
+          },
+        })
+      } else {
+        await db.event.create({ data: parsedFormData })
+      }
+      return typedjson({ success: true, parsedFormData })
+    } catch (error) {
+      return typedjson({ success: false, error: error }, { status: 400 })
+    }
+  }
 }
 
 export default function Index() {
@@ -84,7 +82,8 @@ export default function Index() {
 
   return (
     <Theme>
-      <div className="flex h-screen flex-col ">
+      <div className="flex h-screen flex-col bg-white
+">
         <TopBar />
         <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />

@@ -10,6 +10,7 @@ import Logo from "~/components/common/logo"
 
 export default function Menu({
   showMenu,
+  setShowMenu,
   onClose,
 }: {
   showMenu: boolean
@@ -57,7 +58,7 @@ export default function Menu({
               </div>
               <nav>
                 <div>
-                  <NavLink to="/">
+                  <NavLink to="/" onClick={() => setShowMenu(false)}>
                     {({ isActive }) => {
                       return (
                         <div
@@ -154,44 +155,7 @@ export default function Menu({
                       </div>
                     )}
                   </NavLink>
-                </div>
-                {/* <NavLink to="/menu">
-                    {(isActive) => (
-                      <div
-                        className={
-                          isActive
-                            ? "bg-menu-500"
-                            : "bg-emerald-500" &&
-                              "flex justify-start items-center h-10 rounded-r-full"
-                        }
-                      >
-                        <span className="text-xl relative left-10">Go to date</span>
-                        <IoTodayOutline size={23} className="absolute left-2" />
-                      </div>
-                    )}
-                  </NavLink> */}
-                {/* <NavLink
-                    className={(isActive) =>
-                      (isActive ? "bg-menu-500" : "bg-none") && "rounded-r-full"
-                    }
-                    to="/"
-                  >
-                    <div className="flex justify-start items-center h-10 rounded-r-full">
-                      <span className="text-xl relative left-10">Today</span>
-                      <IoTodayOutline size={23} className="absolute left-2"/>
-                    </div>
-                  </NavLink> */}
-                {/* <NavLink
-                    className={(isActive) =>
-                      (isActive ? "bg-menu-500" : "bg-none") && "rounded-r-full"
-                    }
-                    to="/menu1"
-                  >
-                    <div className="flex justify-start items-center h-10 rounded-r-full">
-                      <span className="text-xl relative left-10">Go to date</span>
-                      <LiaCalendarAlt size={30} className="absolute left-1 " />
-                    </div>
-                  </NavLink> */}
+                </div>{" "}
               </nav>
             </div>
           </div>
@@ -200,26 +164,3 @@ export default function Menu({
     </AnimatePresence>
   )
 }
-
-// <div>
-//   <h2 className="ml-10 mt-3 text-text-gray-200 font-extrabold text-3xl">
-//     Rooms
-//   </h2>
-
-//   <div className="mt-6 text-text-gray-300">
-//     <nav>
-//       <NavLink to="/">
-//         {(isActive) => (
-//           <div className={isActive ? "bg-red-600" : "bg-none"}>Today</div>
-//         )}
-//       </NavLink>
-
-//       <NavLink
-//         to="/event-dialog"
-//         className={(isActive) => (isActive ? "bg-red-600" : "bg-none")}
-//       >
-//         <div>Go to date</div>
-//       </NavLink>
-//     </nav>
-//   </div>
-// </div>

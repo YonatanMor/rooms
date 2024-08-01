@@ -17,7 +17,7 @@ export default function EventDialog({ clickedCell }) {
   let displayEvent
   const { events } = useIndexData()
 
-  console.log({ clickedCell })
+  // console.log({ clickedCell })
   if (clickedCell) {
     displayEvent = events.find(
       (event) =>
@@ -53,15 +53,17 @@ export default function EventDialog({ clickedCell }) {
             <div className="flex w-full items-center justify-between">
               <div
                 onClick={() => setShowEventDialog(false)}
-                className="relative -top-1.5 z-20 ml-3 text-7xl font-extralight text-text-gray-300"
+                className="relative -top-1.5 z-20 ml-3 text-7xl font-extralight text-text-grey-300"
               >
                 &times;
               </div>
               <button
+              name="action"
                 form="create/update_event"
                 onClick={() => setShowEventDialog(false)}
                 type="submit"
-                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-text-gray-300"
+                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-text-grey-300"
+                value="action_write"
               >
                 Save
               </button>
@@ -143,7 +145,7 @@ export default function EventDialog({ clickedCell }) {
                   value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
-                  className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-flag-red"
+                  className="z-20 mr-5 h-10 w-24 rounded-3xl bg-white text-xl text-flag-purple"
                 >
                   Delete
                 </button>

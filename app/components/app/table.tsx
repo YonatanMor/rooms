@@ -63,37 +63,27 @@ export default function Table({ dbEvents, setClickedCell }) {
   ]
 
   const classrooms = [
-    "Yoga",
-    "Spinning",
-    "Climbing",
-    "Bike",
-    "Rock",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
-    // "Yoga",
-    // "Spinning",
-    // "Climbing",
+    "Herb Ellis Hall",
+    "Miles Davis Chamber",
+    "John Coltrane Space",
+    "Duke Ellington Honors",
+    "Louis Armstrong Tune",
+    "Charlie Parker Groove",
+    "Sole Spin",
+    "Sweet Swing",
+    "R&B",
+    "High Tunes",
+    "Spirit Gospel",
+    "Old Blues",
+    "B.B. King Vibes",
+    "Mike Stern Strings",
   ]
+
+  const cellColor = {
+    orange: `bg-gradient-to-r from-flag-orange to-[#F6DCAC]`,
+    blue: `bg-gradient-to-r from-flag-blue to-[#96C9F4]`,
+    green: `bg-gradient-to-r from-flag-green to-[#9DDE8B]`,
+  }
 
   const tableRows = classrooms.map((room) => {
     const restOfRow = []
@@ -106,7 +96,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         hour: hours[i + 1],
         classroom: room,
         key: uuid(),
-        style: `bg-table-200 text-base `,
+        style: `px-2 ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-[#EBE3D5]"} text-base `,
       })
     }
     return [
@@ -114,7 +104,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         title: room,
         classroom: room, //not sure i need it
         key: uuid(),
-        style: `bg-table-100 sticky left-0 text-base `,
+        style: `px-2 bg-table-100 sticky left-0 text-base`,
       },
       ...restOfRow,
     ]
@@ -126,18 +116,21 @@ export default function Table({ dbEvents, setClickedCell }) {
       title: hour,
       hour: hour,
       key: uuid(),
-      style: `h-5 z-20 text-base sticky top-0`,
+      style: `h-5 z-20 text-base sticky top-0 text-text-grey-200`,
     }
   })
 
   const table = [...tableHours, ...tableRows.flat()]
   return (
-    <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
-      <h2 className="text-center text-lg text-text-gray-100 ">
+    <div className="mb-2 ml-1 flex h-[89dvh] flex-col ">
+      <h2 className="text-center text-lg">
         Monday 31 March 2025
       </h2>
 
-      <div className="overflow-x-auto overflow-y-auto bg-white">
+      <div
+        className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-[#ffffff] via-[#EEEDEB] to-[#F6F5F5]
+"
+      >
         <div
           className={`grid h-max w-max gap-1`}
           style={{
@@ -152,7 +145,7 @@ export default function Table({ dbEvents, setClickedCell }) {
               <div
                 key={cell.key}
                 onClick={() => handleClickedCell(cell)}
-                className={`${cell.style} flex items-center justify-center rounded-md`}
+                className={`${cell.style} flex items-center justify-center rounded-md text-text-grey-500`}
               >
                 {cell.title}
               </div>
