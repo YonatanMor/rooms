@@ -1,10 +1,10 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { v4 as uuid } from "uuid"
 import { AppContext } from "~/app-context"
 
 export default function Table({ dbEvents, setClickedCell }) {
   const { setShowEventDialog } = useContext(AppContext)
-
+  const skipCellsCounter = useRef(1)
   const handleClickedCell = (cell) => {
     if (cell.isClickable) {
       setClickedCell(cell)
@@ -97,9 +97,11 @@ export default function Table({ dbEvents, setClickedCell }) {
         title: event ? event.title : "",
         hour: hours[i + 1],
         classroom: room,
+        type: event?.type || "",
         key: uuid(),
         isClickable: true,
-        style: `px-2 ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-[#EBE3D5]"} text-base `,
+        duration: event ? event.duration : "",
+        style: `px-2 text-base ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-[#EBE3D5]"}`,
       })
     }
     return [
@@ -107,7 +109,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         title: room,
         classroom: room, //not sure i need it
         key: uuid(),
-        style: `px-2 bg-table-100 sticky left-0 text-base`,
+        style: `px-1 bg-table-100 sticky left-0 text-base w-10ch`,
         isClickable: false,
       },
       ...restOfRow,
@@ -120,7 +122,8 @@ export default function Table({ dbEvents, setClickedCell }) {
       title: hour,
       hour: hour,
       key: uuid(),
-      style: `h-5 z-20 text-base sticky top-0 text-text-grey-200`,
+      style: `h-5 z-20 text-base sticky top-0 text-text-grey-200 text-[10px]`,
+      // set text size in tailwind
       isClickable: false,
     }
   })
@@ -131,33 +134,61 @@ export default function Table({ dbEvents, setClickedCell }) {
     <div className="mb-2 ml-1 flex h-[89dvh] flex-col ">
       <h2 className="text-center text-lg">Monday 31 March 2025</h2>
 
-      <div
-        className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-[#ffffff] via-[#EEEDEB] to-[#F6F5F5]
-"
-      >
+      <div className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-[#ffffff] via-[#EEEDEB] to-[#F6F5F5]">
         <div
           className={`grid h-max w-max gap-1`}
           style={{
-            gridTemplateColumns: `repeat(${hours.length}, minmax(5rem, auto))`,
+            gridTemplateColumns: `repeat(${hours.length}, minmax(3rem, auto))`,
             gridTemplateRows: ` 20px repeat(${classrooms.length + 1}, minmax(3rem, 1fr))`,
           }}
         >
           <div className="absolute z-10 h-[24px] w-full bg-white"></div>
-          <div className="absolute left-0 z-30 h-6 w-[144px] bg-white"></div>
-          {table.map((cell) => {
-            return (
-              <div
-                key={cell.key}
-                onClick={() => handleClickedCell(cell)}
-                className={`${cell.style} text-text-grey-500 flex items-center justify-center rounded-md`}
-                style={cell.title ? { gridColumn: `span 2` } : {}}
+          <div className="absolute left-0 z-30 h-6 w-[100px] bg-black"></div>
 
-                // style={cell.title ? { columnSpan: '3' } : {}}
-                // style={cell.title==='yoni' ? { gridColumn: `span ${3}` } : {}}
-              >
-                {cell.title}
-              </div>
-            )
+          {table.map((cell) => {
+            if (skipCellsCounter.current === 1) {
+              cell.duration === "0:30"
+                ? (skipCellsCounter.current = 1)
+                : cell.duration === "1:00"
+                  ? (skipCellsCounter.current = 2)
+                  : cell.duration === "1:30"
+                    ? (skipCellsCounter.current = 3)
+                    : cell.duration === "2:00"
+                      ? (skipCellsCounter.current = 4)
+                      : 0
+
+              return (
+                <div
+                  key={cell.key}
+                  onClick={() => handleClickedCell(cell)}
+                  className={`${cell.style} flex flex-col items-stretch  rounded-md text-text-grey-500`}
+                  style={{ gridColumn: `span ${skipCellsCounter.current}` }}
+                  // style={{
+                  //   width: "10ch" /* Limit the width to 10 characters */,
+                  //   // word-wrap: 'break-word', /* Ensure words are wrapped */
+                  //   // white-space: 'pre-wrap' /* Preserve whitespace and wrap long words */
+                  // }}
+                >
+                  {cell.duration && (
+                    <span className=" text-[10px]">
+                      {/* set the text size in TW config */}
+                      {cell.hour} -{" "}
+                      {
+                        hours[
+                          hours.indexOf(`${cell.hour}`) +
+                            skipCellsCounter.current
+                        ]
+                      }
+                    </span>
+                  )}
+
+                  <span className=" flex grow items-center">{cell.title}</span>
+                </div>
+              )
+            }
+
+            --skipCellsCounter.current
+            return null
           })}
         </div>
       </div>

@@ -39,11 +39,11 @@ export async function action(actionArgs: ActionFunctionArgs) {
   async function action_write({ request }: ActionFunctionArgs) {
     const schema = z
       .object({
-        title: z.string(),
+        title: z.string().max(20),
         type: z.enum(["Event", "Rehearsal", "Lesson"]),
         hour: z.string().min(5).max(5),
         classroom: z.string(),
-        note: z.string(),
+        note: z.string().max(80),
         duration: z.string(),
       })
       .strict()
@@ -82,8 +82,10 @@ export default function Index() {
 
   return (
     <Theme>
-      <div className="flex h-screen flex-col bg-white
-">
+      <div
+        className="flex h-screen flex-col bg-white
+"
+      >
         <TopBar />
         <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />

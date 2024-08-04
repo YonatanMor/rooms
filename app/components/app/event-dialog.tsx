@@ -75,7 +75,7 @@ export default function EventDialog({ clickedCell }) {
               >
                 <span className="pl-4 text-text-grey-600">Event title</span>
                 <input
-                  maxLength={30}
+                  maxLength={20}
                   type="text"
                   defaultValue={displayEvent?.title}
                   placeholder="Event title"
@@ -140,6 +140,7 @@ export default function EventDialog({ clickedCell }) {
                   rows={3}
                   defaultValue={displayEvent?.note}
                   className="rounded-3xl px-3 py-1 text-start text-2xl opacity-85"
+                  maxLength={80}
                 />
               </Form>
             </div>

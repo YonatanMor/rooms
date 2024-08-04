@@ -1,9 +1,11 @@
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx}"],
-  plugins: [
-  ],
+  plugins: [],
   theme: {
     extend: {
+      width: {
+        "10ch": "10ch",
+      },
       colors: {
         flag: {
           purple: "#C738BD",
@@ -12,7 +14,7 @@ export default {
           green: "#36BA98",
         },
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
-        btn: { delete: "#F5004F", save: "#399918"},
+        btn: { delete: "#F5004F", save: "#399918" },
         text: {
           grey: {
             100: "#9F9898",
