@@ -71,7 +71,7 @@ export default function EventDialog({ clickedCell }) {
               <Form
                 id="create/update_event"
                 method="POST"
-                className=" flex w-full flex-col items-stretch justify-start" // add balck flex class
+                className=" flex w-full flex-col items-stretch justify-start" 
               >
                 <span className="pl-4 text-text-grey-600">Event title</span>
                 <input
@@ -103,7 +103,7 @@ export default function EventDialog({ clickedCell }) {
                   id="hour"
                   readOnly
                   defaultValue={displayEvent?.hour || clickedCell.hour}
-                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"//migration & zod
+                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
                 />
 
                 <span className="pl-4">Duration</span>
@@ -153,7 +153,7 @@ export default function EventDialog({ clickedCell }) {
                   value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
-                  className="z-20 mr-5 flex h-10  w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
+                  className="z-20 mr-5 flex h-10 mt-3 w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
                 >
                   {/* <AiTwotoneDelete size={24}/> */}
                   <span>Delete</span>

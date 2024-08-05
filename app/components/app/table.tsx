@@ -5,6 +5,7 @@ import { AppContext } from "~/app-context"
 export default function Table({ dbEvents, setClickedCell }) {
   const { setShowEventDialog } = useContext(AppContext)
   const skipCellsCounter = useRef(1)
+
   const handleClickedCell = (cell) => {
     if (cell.isClickable) {
       setClickedCell(cell)
@@ -80,7 +81,7 @@ export default function Table({ dbEvents, setClickedCell }) {
     "King Vibes",
     "Stern Strings",
   ]
-  // add cellColor colors to TWconfig
+
   const cellColor = {
     orange: `bg-gradient-to-r from-flag-orange to-[#F6DCAC]`,
     blue: `bg-gradient-to-r from-flag-blue to-[#96C9F4]`,
@@ -122,7 +123,7 @@ export default function Table({ dbEvents, setClickedCell }) {
       title: hour,
       hour: hour,
       key: uuid(),
-      style: `h-5 z-20 text-base sticky top-0 text-text-grey-200 text-[10px]`,
+      style: `z-20 text-base sticky top-0 text-text-grey-200 text-[10px] flex items-center`,
       // set text size in tailwind
       isClickable: false,
     }
@@ -130,47 +131,47 @@ export default function Table({ dbEvents, setClickedCell }) {
 
   const table = [...tableHours, ...tableRows.flat()]
 
+  // useEffect(() => {
+  //   if (firstColWidth.current && patch.current) {
+  //     const sourceDivWidth = sourceDivRef.current.getBoundingClientRect().width;
+  //     targetDivRef.current.style.width = `${sourceDivWidth}px`;
+  //   }
+  // }, []);
+
   return (
-    <div className="mb-2 ml-1 flex h-[89dvh] flex-col ">
+    <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
       <h2 className="text-center text-lg">Monday 31 March 2025</h2>
 
-      <div className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-[#ffffff] via-[#EEEDEB] to-[#F6F5F5]">
+      <div className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-white via-[#EEEDEB] to-[#F6F5F5]">
         <div
           className={`grid h-max w-max gap-1`}
           style={{
             gridTemplateColumns: `repeat(${hours.length}, minmax(3rem, auto))`,
-            gridTemplateRows: ` 20px repeat(${classrooms.length + 1}, minmax(3rem, 1fr))`,
+            gridTemplateRows: `20px repeat(${classrooms.length}, minmax(3rem, 1fr))`,
           }}
         >
           <div className="absolute z-10 h-[24px] w-full bg-white"></div>
-          <div className="absolute left-0 z-30 h-6 w-[100px] bg-black"></div>
+          <div className="absolute left-0 z-30 h-6 w-[90px] bg-white"></div>
 
           {table.map((cell) => {
             if (skipCellsCounter.current === 1) {
-              cell.duration === "0:30"
-                ? (skipCellsCounter.current = 1)
-                : cell.duration === "1:00"
-                  ? (skipCellsCounter.current = 2)
-                  : cell.duration === "1:30"
-                    ? (skipCellsCounter.current = 3)
-                    : cell.duration === "2:00"
-                      ? (skipCellsCounter.current = 4)
-                      : 0
+              cell.duration === "1:00"
+                ? (skipCellsCounter.current = 2)
+                : cell.duration === "1:30"
+                  ? (skipCellsCounter.current = 3)
+                  : cell.duration === "2:00"
+                    ? (skipCellsCounter.current = 4)
+                    : 0
 
               return (
                 <div
                   key={cell.key}
                   onClick={() => handleClickedCell(cell)}
-                  className={`${cell.style} flex flex-col items-stretch  rounded-md text-text-grey-500`}
+                  className={`${cell.style} flex flex-col rounded-md text-text-grey-500`}
                   style={{ gridColumn: `span ${skipCellsCounter.current}` }}
-                  // style={{
-                  //   width: "10ch" /* Limit the width to 10 characters */,
-                  //   // word-wrap: 'break-word', /* Ensure words are wrapped */
-                  //   // white-space: 'pre-wrap' /* Preserve whitespace and wrap long words */
-                  // }}
                 >
                   {cell.duration && (
-                    <span className=" text-[10px]">
+                    <span className=" pt-[1px] text-[10px] ">
                       {/* set the text size in TW config */}
                       {cell.hour} -{" "}
                       {
@@ -182,7 +183,7 @@ export default function Table({ dbEvents, setClickedCell }) {
                     </span>
                   )}
 
-                  <span className=" flex grow items-center">{cell.title}</span>
+                  <span className="flex grow items-center">{cell.title}</span>
                 </div>
               )
             }
