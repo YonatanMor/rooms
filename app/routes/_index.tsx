@@ -5,7 +5,7 @@ import { useState } from "react"
 import { getFormDataOrFail } from "remix-params-helper"
 import { typedjson, UseDataFunctionReturn } from "remix-typedjson"
 import { z } from "zod"
-import EventDialog from "~/components/app/event-dialog"
+import EventDialog, { TClickedCell } from "~/components/app/event-dialog"
 import Flags from "~/components/app/flags"
 import Table from "~/components/app/table"
 import TopBar from "~/components/app/top-bar"
@@ -78,7 +78,7 @@ export async function action(actionArgs: ActionFunctionArgs) {
 
 export default function Index() {
   const { events } = useLoaderData<typeof loader>() // should it be inside a useEffect to prevent redundant calls to DB?
-  const [clickedCell, setClickedCell] = useState(null)
+  const [clickedCell, setClickedCell] = useState<TClickedCell | null>(null)
 
   return (
     <Theme>

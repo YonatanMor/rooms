@@ -9,8 +9,24 @@ const slideMenuVariants = {
   open: { y: 0 },
   closed: { y: "100%" },
 }
+
+export type TClickedCell = {
+  classroom: string
+  duration: string
+  hour: string
+  isClickable: boolean
+  key: string
+  style: string
+  title: string
+  type: string
+}
+
 // the hours cells are clickable
-export default function EventDialog({ clickedCell }) {
+export default function EventDialog({
+  clickedCell,
+}: {
+  clickedCell: TClickedCell | null
+}) {
   const { showEventDialog, setShowEventDialog } = useContext(AppContext)
   const [hideForm, setHideForm] = useState(false)
 
@@ -18,6 +34,7 @@ export default function EventDialog({ clickedCell }) {
   const { events } = useIndexData()
 
   if (clickedCell) {
+    console.log(clickedCell)
     displayEvent = events.find(
       (event) =>
         event.hour === clickedCell.hour &&
@@ -51,7 +68,7 @@ export default function EventDialog({ clickedCell }) {
             <div className=" flex w-full items-center justify-between">
               <div
                 onClick={() => setShowEventDialog(false)}
-                className=" text-text-grey-300 relative -top-1.5 z-20 ml-3 text-7xl font-extralight"
+                className=" relative -top-1.5 z-20 ml-3 text-7xl font-extralight text-text-grey-300"
               >
                 &times;
               </div>
@@ -67,11 +84,11 @@ export default function EventDialog({ clickedCell }) {
               </button>
             </div>
 
-            <div className="text-text-grey-500 relative flex h-[80%] w-[90%] justify-center">
+            <div className="relative flex h-[80%] w-[90%] justify-center text-text-grey-500">
               <Form
                 id="create/update_event"
                 method="POST"
-                className=" flex w-full flex-col items-stretch justify-start" 
+                className=" flex w-full flex-col items-stretch justify-start"
               >
                 <span className="pl-4 text-text-grey-600">Event title</span>
                 <input
@@ -153,7 +170,7 @@ export default function EventDialog({ clickedCell }) {
                   value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
-                  className="z-20 mr-5 flex h-10 mt-3 w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
+                  className="z-20 mr-5 mt-3 flex h-10 w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
                 >
                   {/* <AiTwotoneDelete size={24}/> */}
                   <span>Delete</span>

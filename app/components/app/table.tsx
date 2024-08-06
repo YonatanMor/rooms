@@ -95,14 +95,15 @@ export default function Table({ dbEvents, setClickedCell }) {
         (e) => e.classroom === room && e.hour === hours[i + 1],
       )
       restOfRow.push({
-        title: event ? event.title : "",
+        title: event?.title || "",
         hour: hours[i + 1],
         classroom: room,
         type: event?.type || "",
         key: uuid(),
         isClickable: true,
-        duration: event ? event.duration : "",
-        style: `px-2 text-base ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-[#EBE3D5]"}`,
+        duration: event?.duration || "",
+        styleOuter: "border-[1px] border-text-grey-700 bg-white flex",
+        styleInner: `rounded-lg px-2 text-base ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-white"}`,
       })
     }
     return [
@@ -110,20 +111,22 @@ export default function Table({ dbEvents, setClickedCell }) {
         title: room,
         classroom: room, //not sure i need it
         key: uuid(),
-        style: `px-1 bg-table-100 sticky left-0 text-base w-10ch`,
+        styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] border-text-grey-700 flex`, //sticky
+        styleInner: `flex items-center`,
         isClickable: false,
       },
       ...restOfRow,
     ]
   })
 
-  const tableHours = hours.map((hour, i) => {
+  const tableHours = hours.map((hour) => {
     return {
       classroom: "", //not sure i need it
       title: hour,
       hour: hour,
       key: uuid(),
-      style: `z-20 text-base sticky top-0 text-text-grey-200 text-[10px] flex items-center`,
+      styleOuter: `z-20 sticky top-0 `,
+      styleInner: `text-base text-text-grey-200 text-[10px] flex justify-center`,
       // set text size in tailwind
       isClickable: false,
     }
@@ -142,16 +145,16 @@ export default function Table({ dbEvents, setClickedCell }) {
     <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
       <h2 className="text-center text-lg">Monday 31 March 2025</h2>
 
-      <div className="overflow-x-auto overflow-y-auto bg-gradient-to-b from-white via-[#EEEDEB] to-[#F6F5F5]">
+      <div className="overflow-x-auto overflow-y-auto bg-text-grey-700 bg-gradient-to-b">
         <div
-          className={`grid h-max w-max gap-1`}
+          className={`grid h-max w-max`}
           style={{
             gridTemplateColumns: `repeat(${hours.length}, minmax(3rem, auto))`,
             gridTemplateRows: `20px repeat(${classrooms.length}, minmax(3rem, 1fr))`,
           }}
         >
-          <div className="absolute z-10 h-[24px] w-full bg-white"></div>
-          <div className="absolute left-0 z-30 h-6 w-[90px] bg-white"></div>
+          <div className="absolute z-10 h-5 w-full bg-red-400"></div>
+          <div className="absolute left-0 z-30 h-5 w-[90px] bg-white"></div>
 
           {table.map((cell) => {
             if (skipCellsCounter.current === 1) {
@@ -165,25 +168,28 @@ export default function Table({ dbEvents, setClickedCell }) {
 
               return (
                 <div
-                  key={cell.key}
-                  onClick={() => handleClickedCell(cell)}
-                  className={`${cell.style} flex flex-col rounded-md text-text-grey-500`}
+                  className={`${cell.styleOuter}`}
                   style={{ gridColumn: `span ${skipCellsCounter.current}` }}
                 >
-                  {cell.duration && (
-                    <span className=" pt-[1px] text-[10px] ">
-                      {/* set the text size in TW config */}
-                      {cell.hour} -{" "}
-                      {
-                        hours[
-                          hours.indexOf(`${cell.hour}`) +
-                            skipCellsCounter.current
-                        ]
-                      }
-                    </span>
-                  )}
-
-                  <span className="flex grow items-center">{cell.title}</span>
+                  <div
+                    key={cell.key}
+                    onClick={() => handleClickedCell(cell)}
+                    className={`${cell.styleInner} text-text-grey-500`} //maybe the white class is redundent
+                  >
+                    {cell.duration && (
+                      <span className=" pt-[1px] text-[10px] ">
+                        {/* set the text size in TW config */}
+                        {cell.hour} -{" "}
+                        {
+                          hours[
+                            hours.indexOf(`${cell.hour}`) +
+                              skipCellsCounter.current
+                          ]
+                        }
+                      </span>
+                    )}
+                    <div className="flex">{cell.title}</div>
+                  </div>
                 </div>
               )
             }

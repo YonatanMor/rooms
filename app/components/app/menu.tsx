@@ -1,10 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { GoGear } from "react-icons/go"
 import { IoTodayOutline } from "react-icons/io5"
-import { LiaCalendarAlt } from "react-icons/lia"
 import { MdArrowBackIosNew } from "react-icons/md"
-import { RiAdminLine } from "react-icons/ri"
-import { SlLogout } from "react-icons/sl"
 import { NavLink } from "react-router-dom"
 import Logo from "~/components/common/logo"
 
@@ -14,6 +11,7 @@ export default function Menu({
   onClose,
 }: {
   showMenu: boolean
+  setShowMenu: (show: boolean) => void
   onClose: () => void
 }) {
   // const { showMenu, setShowMenu } = useContext(AppContext)
