@@ -20,7 +20,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
           onClick={() => setShowOpts(true)}
           className={` ${showOpts ? `hidden` : `items-strech flex flex-col justify-center`}`}
         >
-          <div className=" mb-2 flex h-14 items-center justify-start gap-3 rounded-full bg-white opacity-85">
+          <div className=" mb-6 flex h-14 items-center justify-start gap-3 rounded-lg border-2 border-[#1D54CA] bg-white opacity-85">
             <div className="absolute ml-3">
               <IoIosArrowDown size={25} color="grey" />
             </div>
@@ -30,7 +30,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
               name={inputId}
               id={inputId}
               type="text"
-              className="pointer-events-none w-full rounded-full pb-1 text-center  text-2xl"
+              className="pointer-events-none w-full rounded-lg pb-1 text-center text-2xl"
               value={selected ? selected : dbValue ? dbValue : options[0].value}
             />
           </div>
@@ -38,15 +38,15 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
       )}
 
       {showOpts && (
-        <div className="absolute z-10 flex w-full flex-col items-center gap-3 ">
+        <div className="absolute z-30 flex w-full flex-col items-center gap-6 ">
           {options.map((opt, i) => {
             return (
               <div
-                className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-16 w-full items-center justify-start rounded-3xl border-2 border-text-grey-400 bg-white pl-3 text-2xl`}
+                className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-14 w-full items-center justify-center rounded-lg  border-2 border-[#1D54CA] bg-white text-2xl shadow-lg`}
                 onClick={() => handleSelecion(opt)}
                 key={i}
               >
-                <span className="pl-5">{opt.value}</span>
+                <span>{opt.value}</span>
               </div>
             )
           })}

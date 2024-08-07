@@ -57,14 +57,14 @@ export default function EventDialog({
             damping: 40,
             stiffness: 400,
           }}
-          className="absolute z-50 flex h-full w-screen flex-col justify-end"
+          className="absolute z-50 flex h-full w-screen flex-col justify-end bg-black bg-opacity-30 backdrop-blur-[1px]"
           onClick={() => setShowEventDialog(false)}
         >
           {hideForm && (
-            <div className="absolute z-10 h-[93%] w-full rounded-t-3xl bg-gradient-to-t from-[#484a4e] to-[#b9bcc1]"></div>
+            <div className="absolute z-20 h-[93%] w-full rounded-t-3xl bg-white"></div>
           )}
           <div
-            className="flex h-[93%] flex-col items-center  rounded-t-3xl bg-gradient-to-t from-[#484a4e] to-[#b9bcc1]"
+            className="flex h-[93%] flex-col items-center rounded-t-3xl border-2 border-text-grey-100 bg-white "
             onClick={(e) => e.stopPropagation()}
           >
             <div className=" flex w-full items-center justify-between">
@@ -79,88 +79,130 @@ export default function EventDialog({
                 form="create/update_event"
                 onClick={() => setShowEventDialog(false)}
                 type="submit"
-                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-[#A1DD70] text-xl"
+                className="z-20 mr-5 h-10 w-24 rounded-3xl bg-[#90D26D] text-xl font-semibold text-[#EEEEEE] shadow-sm"
                 value="action_write"
               >
                 Save
               </button>
             </div>
 
-            <div className="relative flex h-[80%] w-[90%] justify-center text-text-grey-500">
+            <div className="border-1 relative flex h-[80%] w-[90%] justify-center rounded-xl bg-[#F5F7F8] p-4 text-text-grey-500 shadow">
               <Form
                 id="create/update_event"
                 method="POST"
                 className=" flex w-full flex-col items-stretch justify-start"
               >
-                <span className="pl-4 text-text-grey-600">Event title</span>
-                <input
-                  maxLength={20}
-                  type="text"
-                  defaultValue={displayEvent?.title}
-                  placeholder="Event title"
-                  name="title"
-                  id="title"
-                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="title"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Title
+                  </label>
+                  <input
+                    maxLength={20}
+                    type="text"
+                    defaultValue={displayEvent?.title}
+                    placeholder="Event title"
+                    name="title"
+                    id="title"
+                    className="mb-6 h-14 w-full rounded-lg border-2 border-[#1D54CA] pb-1 text-center text-2xl"
+                  />
+                </div>
 
-                <span className="pl-4 text-text-grey-600">Classroom</span>
-                <input
-                  name="classroom"
-                  type="text"
-                  id="classroom"
-                  readOnly
-                  defaultValue={
-                    displayEvent?.classroom || clickedCell?.classroom
-                  }
-                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="classroom"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Room
+                  </label>
+                  <input
+                    name="classroom"
+                    type="text"
+                    id="classroom"
+                    readOnly
+                    defaultValue={
+                      displayEvent?.classroom || clickedCell?.classroom
+                    }
+                    className="mb-6 h-14 w-full rounded-lg border-2 border-[#1D54CA] pb-1 text-center text-2xl text-[#91918f]"
+                  />
+                </div>
 
-                <span className="pl-4 text-text-grey-600">Time</span>
-                <input
-                  name="hour"
-                  type="text"
-                  id="hour"
-                  readOnly
-                  defaultValue={displayEvent?.hour || clickedCell?.hour}
-                  className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="hour"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Time
+                  </label>
+                  <input
+                    name="hour"
+                    type="text"
+                    id="hour"
+                    readOnly
+                    defaultValue={displayEvent?.hour || clickedCell?.hour}
+                    className="mb-6 h-14 w-full rounded-lg border-2 border-[#1D54CA] pb-1 text-center text-2xl text-[#91918f] "
+                  />
+                </div>
 
-                <span className="pl-4">Duration</span>
-                <Select
-                  setHideForm={setHideForm}
-                  inputId={"duration"}
-                  dbValue={displayEvent?.duration}
-                  options={[
-                    { value: "0:30", disable: false },
-                    { value: "1:00", disable: false },
-                    { value: "1:30", disable: false },
-                    { value: "2:00", disable: false },
-                  ]}
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="duration"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Duration
+                  </label>
+                  <Select
+                    setHideForm={setHideForm}
+                    inputId={"duration"}
+                    dbValue={displayEvent?.duration}
+                    options={[
+                      { value: "0:30", disable: false },
+                      { value: "1:00", disable: false },
+                      { value: "1:30", disable: false },
+                      { value: "2:00", disable: false },
+                    ]}
+                  />
+                </div>
 
-                <span className="pl-4 text-text-grey-600">Type</span>
-                <Select
-                  setHideForm={setHideForm}
-                  inputId={"type"}
-                  dbValue={displayEvent?.type}
-                  options={[
-                    { value: "Type", disable: true },
-                    { value: "Event", disable: false },
-                    { value: "Rehearsal", disable: false },
-                    { value: "Lesson", disable: false },
-                  ]}
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="type"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Type
+                  </label>
+                  <Select
+                    setHideForm={setHideForm}
+                    inputId={"type"}
+                    dbValue={displayEvent?.type}
+                    options={[
+                      { value: "Type", disable: true },
+                      { value: "Event", disable: false },
+                      { value: "Rehearsal", disable: false },
+                      { value: "Lesson", disable: false },
+                    ]}
+                  />
+                </div>
 
-                <span className="pl-4 text-text-grey-600">Note</span>
-                <textarea
-                  name="note"
-                  placeholder="note..."
-                  id="note"
-                  rows={3}
-                  defaultValue={displayEvent?.note}
-                  className="rounded-3xl px-3 py-1 text-start text-2xl opacity-85"
-                  maxLength={80}
-                />
+                <div className="relative">
+                  <label
+                    htmlFor="note"
+                    className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
+                  >
+                    Note
+                  </label>
+                  <textarea
+                    name="note"
+                    placeholder="note..."
+                    id="note"
+                    rows={3}
+                    defaultValue={displayEvent?.note}
+                    className=" w-full rounded-lg border-2 border-[#1D54CA] px-2 pt-1 text-start text-2xl"
+                    maxLength={80}
+                  />
+                </div>
               </Form>
             </div>
 
@@ -172,7 +214,7 @@ export default function EventDialog({
                   value="action_delete"
                   onClick={() => setShowEventDialog(false)}
                   type="submit"
-                  className="z-20 mr-5 mt-3 flex h-10 w-24 items-center justify-center gap-1 rounded-3xl bg-[#A91D3A] text-xl text-[#FFAAAA]"
+                  className="z-20 mt-3 flex h-10 w-24 items-center justify-center gap-1 rounded-3xl bg-[#c4405b] text-xl font-semibold text-[#eac4c4] shadow-sm"
                 >
                   {/* <AiTwotoneDelete size={24}/> */}
                   <span>Delete</span>

@@ -94,10 +94,7 @@ export default function Index() {
 
   return (
     <Theme>
-      <div
-        className="flex h-screen flex-col bg-white
-"
-      >
+      <div className="flex h-screen flex-col bg-white">
         <TopBar />
         <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />
