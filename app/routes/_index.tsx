@@ -14,8 +14,20 @@ import { namedAction } from "~/utils/named-action.server"
 
 export type IndexLoaderData = UseDataFunctionReturn<typeof loader>
 
+export type TEvent = {
+  id: string
+  type: string
+  createdAt: Date
+  updatedAt: Date
+  title: string
+  classroom: string
+  hour: string
+  duration: string
+  note: string
+}
+
 export async function loader() {
-  const events = await db.event.findMany()
+  const events: TEvent[] = await db.event.findMany()
   return typedjson({ events })
 }
 

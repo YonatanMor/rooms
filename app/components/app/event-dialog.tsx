@@ -19,6 +19,8 @@ export type TClickedCell = {
   style: string
   title: string
   type: string
+  innerStyle: string
+  outerStyle: string
 }
 
 // the hours cells are clickable
@@ -108,7 +110,7 @@ export default function EventDialog({
                   id="classroom"
                   readOnly
                   defaultValue={
-                    displayEvent?.classroom || clickedCell.classroom
+                    displayEvent?.classroom || clickedCell?.classroom
                   }
                   className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
                 />
@@ -119,7 +121,7 @@ export default function EventDialog({
                   type="text"
                   id="hour"
                   readOnly
-                  defaultValue={displayEvent?.hour || clickedCell.hour}
+                  defaultValue={displayEvent?.hour || clickedCell?.hour}
                   className="mb-2 h-14 rounded-full pb-1 text-center text-2xl opacity-85"
                 />
 

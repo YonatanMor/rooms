@@ -1,12 +1,21 @@
 import { useContext, useRef } from "react"
 import { v4 as uuid } from "uuid"
 import { AppContext } from "~/app-context"
+import { TEvent } from "~/routes/_index"
+import { TClickedCell } from "./event-dialog"
 
-export default function Table({ dbEvents, setClickedCell }) {
+export default function Table({
+  dbEvents,
+  setClickedCell,
+}: {
+  dbEvents: TEvent[]
+  setClickedCell: (_show: TClickedCell) => void
+}) {
   const { setShowEventDialog } = useContext(AppContext)
   const skipCellsCounter = useRef(1)
 
-  const handleClickedCell = (cell) => {
+  const handleClickedCell = (cell: TClickedCell) => {
+    console.log(cell)
     if (cell.isClickable) {
       setClickedCell(cell)
       setShowEventDialog(true)
@@ -66,27 +75,21 @@ export default function Table({ dbEvents, setClickedCell }) {
   ]
 
   const classrooms = [
-    "Ellis Hall",
-    "Davis Chamber",
-    "Coltrane Space",
-    "Ellington Honors",
-    "Armstrong Tune",
-    "Parker Groove",
-    "Sole Spin",
-    "Sweet Swing",
+    "Ellis",
+    "Davis",
+    "Coltrane",
+    "Ellington",
+    "Armstrong",
+    "Parker",
+    "Sole",
+    "Sweet",
     "R&B",
-    "High Tunes",
-    "Spirit Gospel",
-    "Old Blues",
-    "King Vibes",
-    "Stern Strings",
+    "High",
+    "Spirit",
+    "Old",
+    "King",
+    "Stern",
   ]
-
-  const cellColor = {
-    orange: `bg-gradient-to-r from-flag-orange to-[#F6DCAC]`,
-    blue: `bg-gradient-to-r from-flag-blue to-[#96C9F4]`,
-    green: `bg-gradient-to-r from-flag-green to-[#9DDE8B]`,
-  }
 
   const tableRows = classrooms.map((room) => {
     const restOfRow = []
@@ -103,7 +106,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         isClickable: true,
         duration: event?.duration || "",
         styleOuter: "border-[1px] border-text-grey-700 bg-white flex",
-        styleInner: `rounded-lg px-2 text-base ${event?.type === "Event" ? cellColor?.blue : event?.type === "Rehearsal" ? cellColor?.green : event?.type === "Lesson" ? cellColor?.orange : "bg-white"}`,
+        styleInner: `flex rounded-[4px] text-base ${event?.type === "Event" ? "bg-event-bg-blue text-event-text-blue" : event?.type === "Rehearsal" ? "bg-event-bg-green  text-event-text-green" : event?.type === "Lesson" ? "bg-event-bg-red  text-event-text-red" : "bg-white"}`,
       })
     }
     return [
@@ -112,7 +115,7 @@ export default function Table({ dbEvents, setClickedCell }) {
         classroom: room, //not sure i need it
         key: uuid(),
         styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] border-text-grey-700 flex`, //sticky
-        styleInner: `flex items-center`,
+        styleInner: `flex items-center text-text-grey-400`,
         isClickable: false,
       },
       ...restOfRow,
@@ -126,9 +129,13 @@ export default function Table({ dbEvents, setClickedCell }) {
       hour: hour,
       key: uuid(),
       styleOuter: `z-20 sticky top-0 `,
-      styleInner: `text-base text-text-grey-200 text-[10px] flex justify-center`,
+      styleInner: `text-base text-text-grey-200 text-[10px] flex justify-center 	`,
       // set text size in tailwind
       isClickable: false,
+      duration: "",
+      // style: "",
+      // innerStyle: "",
+      // outerStyle: "",
     }
   })
 
@@ -142,10 +149,11 @@ export default function Table({ dbEvents, setClickedCell }) {
   // }, []);
 
   return (
-    <div className="mb-2 ml-1 flex h-[89dvh] flex-col">
-      <h2 className="text-center text-lg">Monday 31 March 2025</h2>
-
-      <div className="overflow-x-auto overflow-y-auto bg-text-grey-700 bg-gradient-to-b">
+    <div className="relative mb-2 ml-1 flex h-[89dvh] flex-col">
+      <h2 className="text-center text-lg font-semibold text-text-grey-200">
+        Monday 31 March 2025
+      </h2>
+      <div className="overflow-x-auto overflow-y-auto bg-text-grey-700">
         <div
           className={`grid h-max w-max`}
           style={{
@@ -153,8 +161,8 @@ export default function Table({ dbEvents, setClickedCell }) {
             gridTemplateRows: `20px repeat(${classrooms.length}, minmax(3rem, 1fr))`,
           }}
         >
-          <div className="absolute z-10 h-5 w-full bg-red-400"></div>
-          <div className="absolute left-0 z-30 h-5 w-[90px] bg-white"></div>
+          <div className="absolute z-10 h-5 w-full bg-white"></div>
+          <div className="absolute left-0 z-30 h-5 w-[78px] bg-white"></div>
 
           {table.map((cell) => {
             if (skipCellsCounter.current === 1) {
@@ -168,27 +176,37 @@ export default function Table({ dbEvents, setClickedCell }) {
 
               return (
                 <div
+                  key={cell.key}
                   className={`${cell.styleOuter}`}
                   style={{ gridColumn: `span ${skipCellsCounter.current}` }}
                 >
                   <div
-                    key={cell.key}
                     onClick={() => handleClickedCell(cell)}
-                    className={`${cell.styleInner} text-text-grey-500`} //maybe the white class is redundent
+                    className={`${cell.styleInner} grow`} //maybe the white class is redundent
                   >
                     {cell.duration && (
-                      <span className=" pt-[1px] text-[10px] ">
-                        {/* set the text size in TW config */}
-                        {cell.hour} -{" "}
-                        {
-                          hours[
-                            hours.indexOf(`${cell.hour}`) +
-                              skipCellsCounter.current
-                          ]
-                        }
-                      </span>
+                      <div className="flex rounded-[4px] ">
+                        <div
+                          className={`w-1 rounded-l-[4px] ${cell?.type === "Event" ? "bg-event-text-blue " : cell?.type === "Rehearsal" ? "bg-event-text-green" : cell?.type === "Lesson" ? "bg-event-text-red" : ""}`}
+                        ></div>
+                        <div className="flex flex-col px-1 ">
+                          <span className=" pt-[1px] text-[10px]">
+                            {/* set the text size in TW config */}
+                            {cell.hour} -{" "}
+                            {
+                              hours[
+                                hours.indexOf(`${cell.hour}`) +
+                                  skipCellsCounter.current
+                              ]
+                            }
+                          </span>
+                          <div className="font-bold">{cell.title}</div>
+                        </div>
+                      </div>
                     )}
-                    <div className="flex">{cell.title}</div>
+                    {!cell.isClickable && (
+                      <div className="flex">{cell.title}</div>
+                    )}
                   </div>
                 </div>
               )

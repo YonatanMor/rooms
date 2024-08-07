@@ -42,7 +42,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
           {options.map((opt, i) => {
             return (
               <div
-                className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-16 w-full items-center justify-start rounded-3xl border-4 border-table-100 bg-white pl-3 text-2xl`}
+                className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-16 w-full items-center justify-start rounded-3xl border-2 border-text-grey-400 bg-white pl-3 text-2xl`}
                 onClick={() => handleSelecion(opt)}
                 key={i}
               >
