@@ -12,12 +12,17 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
     }
   }
 
-  useEffect(() => setHideForm(showOpts), [showOpts])
+  useEffect(() => {
+    // console.log(showOpts)
+    setHideForm(showOpts)
+  }, [showOpts])
+
   return (
     <>
-      {!showOpts && (
+      {/* {!showOpts && ( */}
         <div
-          onClick={() => setShowOpts(true)}
+          onClick={(e) => setShowOpts(true)}
+          // className="items-strech flex flex-col justify-center"
           className={` ${showOpts ? `hidden` : `items-strech flex flex-col justify-center`}`}
         >
           <div className=" mb-6 flex h-14 items-center justify-start gap-3 rounded-lg border-2 border-[#1D54CA] bg-white opacity-85">
@@ -35,7 +40,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
             />
           </div>
         </div>
-      )}
+      {/* )} */}
 
       {showOpts && (
         <div className="absolute z-30 flex w-full flex-col items-center gap-6 ">

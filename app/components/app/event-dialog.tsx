@@ -36,7 +36,6 @@ export default function EventDialog({
   const { events } = useIndexData()
 
   if (clickedCell) {
-    console.log(clickedCell)
     displayEvent = events.find(
       (event) =>
         event.hour === clickedCell.hour &&
@@ -61,10 +60,10 @@ export default function EventDialog({
           onClick={() => setShowEventDialog(false)}
         >
           {hideForm && (
-            <div className="absolute z-20 h-[93%] w-full rounded-t-3xl bg-white"></div>
+            <div onClick={(e)=>e.stopPropagation()} className="absolute bg-white z-20 h-[93%] w-full rounded-t-3xl "></div>
           )}
           <div
-            className="flex h-[93%] flex-col items-center rounded-t-3xl border-2 border-text-grey-100 bg-white "
+            className="flex h-[93%] flex-col items-center rounded-t-3xl border-2 border-[#a2a8ab] bg-[#eff1f3] "
             onClick={(e) => e.stopPropagation()}
           >
             <div className=" flex w-full items-center justify-between">
@@ -90,7 +89,7 @@ export default function EventDialog({
               <Form
                 id="create/update_event"
                 method="POST"
-                className=" flex w-full flex-col items-stretch justify-start"
+                className="flex w-full flex-col items-stretch justify-start"
               >
                 <div className="relative">
                   <label

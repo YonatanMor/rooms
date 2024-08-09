@@ -10,7 +10,10 @@ import tailwind from "~/styles/tailwind.css?url"
 import ContextProvider from "./app-context"
 
 export const links: LinksFunction = () => {
-  return [{ rel: "stylesheet", href: tailwind }]
+  return [
+    { rel: "stylesheet", href: tailwind },
+    { rel: "stylesheet", href: "/../app/styles/fonts.css" },
+  ]
 }
 
 export default function App() {

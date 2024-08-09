@@ -7,11 +7,12 @@ export default {
         "10ch": "10ch",
       },
       colors: {
+        nav: { tab: "#B6BBC4" },
         event: {
           text: {
             purple: "#C738BD",
             red: "#C80036",
-            blue: "#3FA2F6",  
+            blue: "#3FA2F6",
             green: "#36BA98",
           },
           bg: { red: "#FCAEAE", blue: "#BBE9FF", green: "#DEF9C4" },
@@ -30,6 +31,11 @@ export default {
           },
         },
         table: { 100: "#B0A695", 200: "#EBE3D5" },
+      },
+      fontFamily: {
+        wires: ["Monoton"],
+        a: ["Orbitron"],
+        logo: ["NotoSerifKhitanSmallScript"],
       },
       fontSize: {
         xs: "12px",

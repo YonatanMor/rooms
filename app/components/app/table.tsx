@@ -11,11 +11,20 @@ export default function Table({
   dbEvents: TEvent[]
   setClickedCell: (_show: TClickedCell) => void
 }) {
+  const today = new Date()
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }
+  const fullDate = today.toLocaleDateString("en-US", options)
+  const displayDate = fullDate.slice(0, 16) + fullDate.slice(17)
+
   const { setShowEventDialog } = useContext(AppContext)
   const skipCellsCounter = useRef(1)
 
   const handleClickedCell = (cell: TClickedCell) => {
-    console.log(cell)
     if (cell.isClickable) {
       setClickedCell(cell)
       setShowEventDialog(true)
@@ -114,7 +123,7 @@ export default function Table({
         title: room,
         classroom: room, //not sure i need it
         key: uuid(),
-        styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] border-text-grey-700 flex`, //sticky
+        styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] rounded-l-none border-text-grey-700 flex`, //sticky
         styleInner: `flex items-center text-text-grey-400`,
         isClickable: false,
       },
@@ -149,9 +158,9 @@ export default function Table({
   // }, []);
 
   return (
-    <div className="relative mb-2 ml-1 flex h-[89dvh] flex-col">
+    <div className="relative mb-2 flex h-[89dvh] flex-col">
       <h2 className="text-center text-lg font-semibold text-text-grey-200">
-        Monday 31 March 2025
+        {displayDate}
       </h2>
       <div className="overflow-x-auto overflow-y-auto bg-text-grey-700">
         <div
@@ -165,6 +174,7 @@ export default function Table({
           <div className="absolute left-0 z-30 h-5 w-[78px] bg-white"></div>
 
           {table.map((cell) => {
+            // console.log(cell.duration || cell)
             if (skipCellsCounter.current === 1) {
               cell.duration === "1:00"
                 ? (skipCellsCounter.current = 2)
@@ -177,15 +187,15 @@ export default function Table({
               return (
                 <div
                   key={cell.key}
-                  className={`${cell.styleOuter}`}
+                  className={`${cell.styleOuter} rounded-lg`}
                   style={{ gridColumn: `span ${skipCellsCounter.current}` }}
                 >
                   <div
                     onClick={() => handleClickedCell(cell)}
-                    className={`${cell.styleInner} grow`} //maybe the white class is redundent
+                    className={`${cell.styleInner} grow `} //maybe the white class is redundent
                   >
                     {cell.duration && (
-                      <div className="flex rounded-[4px] ">
+                      <div className="flex rounded-[4px]">
                         <div
                           className={`w-1 rounded-l-[4px] ${cell?.type === "Event" ? "bg-event-text-blue " : cell?.type === "Rehearsal" ? "bg-event-text-green" : cell?.type === "Lesson" ? "bg-event-text-red" : ""}`}
                         ></div>
