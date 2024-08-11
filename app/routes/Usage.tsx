@@ -1,12 +1,13 @@
 import TopBar from "~/components/app/top-bar"
 
 export default function Usage() {
-
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-t from-[#4667b5] via-[#7ac638] to-[#86a8e7]">
+    <div className="flex h-screen flex-col bg-gradient-to-t from-pink-300 via-purple-400 to-blue-500">
       <TopBar />
-      <div className="flex flex-col items-center gap-2">
-        <h1 className="text-3xl mt-5">Coming soon...</h1>
+      <div className="mt-10 flex flex-col items-center gap-2 px-2">
+        <h1 className="font-joke  text-xl">
+          How do you organize a space party? You planet!
+        </h1>
       </div>
     </div>
   )

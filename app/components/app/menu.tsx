@@ -71,8 +71,11 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                       >
-                        <span className="relative left-10 text-xl">Today</span>
-                        <IoTodayOutline size={23} className="absolute left-2" />
+                        <span className="relative left-16 text-lg">Today</span>
+                        <IoTodayOutline
+                          size={20}
+                          className="absolute left-[23px]"
+                        />
                       </div>
                     )
                   }}
@@ -91,11 +94,8 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Week</span>
-                      <LiaCalendarAlt
-                        size={29}
-                        className="absolute left-[5px]"
-                      />
+                      <span className="relative left-16 text-lg">Week</span>
+                      <LiaCalendarAlt size={25} className="absolute left-5" />
                     </div>
                   )}
                 </NavLink>
@@ -109,11 +109,8 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Month</span>
-                      <BsCalendarMonth
-                        size={20}
-                        className="absolute left-[9px]"
-                      />
+                      <span className="relative left-16 text-lg">Month</span>
+                      <BsCalendarMonth size={18} className="absolute left-6" />
                     </div>
                   )}
                 </NavLink>
@@ -129,8 +126,8 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Usage</span>
-                      <GoGraph size={20} className="absolute left-[10px]" />
+                      <span className="relative left-16 text-lg">Usage</span>
+                      <GoGraph size={17} className="absolute left-6" />
                     </div>
                   )}
                 </NavLink>
@@ -144,8 +141,8 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Help</span>
-                      <TbHelp size={22} className="absolute left-[8px]" />
+                      <span className="relative left-16 text-lg">Help</span>
+                      <TbHelp size={20} className="absolute left-[22px]" />
                     </div>
                   )}
                 </NavLink>
@@ -159,10 +156,10 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Rate us</span>
+                      <span className="relative left-16 text-lg">Rate us</span>
                       <MdOutlineGrade
-                        size={22}
-                        className="absolute left-[8px]"
+                        size={20}
+                        className="absolute left-[22px]"
                       />
                     </div>
                   )}
@@ -180,11 +177,8 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                       >
-                        <span className="relative left-10 text-xl">Admin</span>
-                        <RiAdminLine
-                          size={21}
-                          className="absolute left-[8px]"
-                        />
+                        <span className="relative left-16 text-lg">Admin</span>
+                        <RiAdminLine size={19} className="absolute left-5" />
                       </div>
                     )
                   }}
@@ -200,10 +194,10 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                       >
-                        <span className="relative left-10 text-xl">
+                        <span className="relative left-16 text-lg">
                           Settings
                         </span>
-                        <GoGear size={21} className="absolute left-[9px]" />
+                        <GoGear size={19} className="absolute left-5" />
                       </div>
                     )
                   }}
@@ -218,45 +212,75 @@ export default function Menu({
                             } flex h-10 items-center justify-start rounded-r-full
                           `}
                     >
-                      <span className="relative left-10 text-xl">Logout</span>
-                      <SlLogout size={23} className="absolute left-1" />
+                      <span className="relative left-16 text-lg">Logout</span>
+                      <SlLogout size={19} className="absolute left-[17px]" />
                     </div>
                   )}
                 </NavLink>
                 {/* </div> */}
               </nav>
             </div>
-            <div className="mx-1 mt-5 flex h-56 flex-col rounded-2xl bg-slate-300">
-              <div className="font-a text-center text-2xl font-semibold">
+            <div className="mx-1 flex h-60 flex-col items-center rounded-2xl	 bg-slate-300 pt-2 shadow-inner">
+              <div className="mb-2 text-center font-powered text-xl font-semibold">
                 Powered By
               </div>
               {/* <div className="flex justify-evenly"> */}
-              <div className="grid grid-cols-3 grid-rows-3">
-                <div className="m-1 h-12 w-12 ">
+              <div className="grid grid-cols-3 grid-rows-3 gap-x-4">
+                <div className="m-1 h-14 w-14 rounded-lg">
                   <img
-                    className="h-full w-full object-cover"
+                    className="h-full w-full rounded-lg"
                     src="../../../public/images/prisma.png"
                   ></img>
                 </div>
-                <div className="m-1 h-12 bg-slate-400 text-center">2</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">3</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">4</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">5</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">6</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">7</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">8</div>
-                <div className="m-1 h-12 bg-slate-400 text-center">9</div>
-                {/* <div>eslint</div>
-              <div>typeScript</div>
-              <div>tailwind</div>
-              <div>react</div>
-              <div>postGreSQL</div>
-              <div>remix</div>
-              <div>prisma</div>
-              <div>zod</div>
-              <div>framer</div> */}
+                <div className="m-1  h-14 w-14 rounded-lg">
+                  <img
+                    className="h-full w-full rounded-lg"
+                    src="../../../public/images/zod.jpg"
+                  ></img>
+                </div>
+                <div className="m-1 h-14 w-14 rounded-lg">
+                  <img
+                    className="h-full w-full rounded-lg"
+                    src="../../../public/images/eslint.png"
+                  ></img>
+                </div>
+                <div className="m-1 h-14 w-14 rounded-lg bg-white">
+                  <img
+                    className="h-full w-full rounded-lg object-cover"
+                    src="../../../public/images/ts.png"
+                  />
+                </div>
+                <div className="m-1 h-14 w-14 shadow-2xl shadow-blue-900 bg-gradient-to-b from-gray-800 via-gray-900 to-gray-700 rounded-lg">
+                  <img
+                    className="animate-spin-slow h-full w-full p-1 rounded-lg"
+                    src="../../../public/images/react.svg"
+                  ></img>
+                </div>
+                <div className="m-1 flex h-14 w-14 items-center rounded-lg bg-[#222121]">
+                  <img
+                    className="h-8 w-full rounded-lg"
+                    src="../../../public/images/remix.png"
+                  ></img>
+                </div>
+                <div className="m-1 flex h-14 w-14 items-center rounded-lg bg-[#222121]">
+                  <img
+                    className="  rounded-lg"
+                    src="../../../public/images/tailwind.avif"
+                  ></img>
+                </div>
+                <div className="m-1 flex h-14 w-14 items-center rounded-lg bg-[#222121]">
+                  <img
+                    className="  rounded-lg"
+                    src="../../../public/images/postGresQL.png"
+                  ></img>
+                </div>
+                <div className="m-1 flex h-14 w-14 items-center justify-center rounded-lg bg-[#ffffff]">
+                  <img
+                    className="  h-[85%] w-[%85]"
+                    src="../../../public/images/framerMotion.png"
+                  ></img>
+                </div>
               </div>
-              {/* </div> */}
             </div>
           </div>
         </motion.div>

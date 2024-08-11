@@ -60,10 +60,13 @@ export default function EventDialog({
           onClick={() => setShowEventDialog(false)}
         >
           {hideForm && (
-            <div onClick={(e)=>e.stopPropagation()} className="absolute bg-white z-20 h-[93%] w-full rounded-t-3xl "></div>
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="absolute z-20 h-[93%] w-full rounded-t-3xl border-2 border-[#a2a8ab] bg-white"
+            ></div>
           )}
           <div
-            className="flex h-[93%] flex-col items-center rounded-t-3xl border-2 border-[#a2a8ab] bg-[#eff1f3] "
+            className="flex h-[93%] flex-col items-center rounded-t-3xl border-2 border-[#a2a8ab] bg-[#eff1f3]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className=" flex w-full items-center justify-between">
@@ -85,12 +88,8 @@ export default function EventDialog({
               </button>
             </div>
 
-            <div className="border-1 relative flex h-[80%] w-[90%] justify-center rounded-xl bg-[#F5F7F8] p-4 text-text-grey-500 shadow">
-              <Form
-                id="create/update_event"
-                method="POST"
-                className="flex w-full flex-col items-stretch justify-start"
-              >
+            <div className="relative flex w-[90%] justify-center rounded-xl bg-[#C7C8CC] py-6 text-text-grey-500 shadow">
+              <Form id="create/update_event" method="POST" className=" ">
                 <div className="relative">
                   <label
                     htmlFor="title"
@@ -145,7 +144,7 @@ export default function EventDialog({
                   />
                 </div>
 
-                <div className="relative">
+                <div className={`${hideForm ? "" : "relative"}`}>
                   <label
                     htmlFor="duration"
                     className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
@@ -165,7 +164,7 @@ export default function EventDialog({
                   />
                 </div>
 
-                <div className="relative">
+                <div className={`${hideForm ? "" : "relative"}`}>
                   <label
                     htmlFor="type"
                     className="absolute -top-3 left-5 z-10 rounded-xl border-2 bg-white px-2 text-sm text-text-grey-400"
@@ -226,3 +225,5 @@ export default function EventDialog({
     </AnimatePresence>
   )
 }
+
+// i guess youre a pretty fural person

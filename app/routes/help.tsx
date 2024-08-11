@@ -1,12 +1,13 @@
 import TopBar from "~/components/app/top-bar"
 
 export default function Help() {
-
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-t from-[#4667b5] via-[#7ac638] to-[#86a8e7]">
+    <div className="flex h-screen flex-col bg-gradient-to-t from-indigo-400 via-blue-500 to-green-400">
       <TopBar />
-      <div className="flex flex-col items-center gap-2">
-        <h1 className="text-3xl mt-5">Coming soon...</h1>
+      <div className="mt-10 flex flex-col items-center">
+        <h1 className="font-joke text-xl">
+          Why don't skeletons fight? <br /> They don't have the guts!
+        </h1>
       </div>
     </div>
   )

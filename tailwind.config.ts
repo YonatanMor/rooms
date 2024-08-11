@@ -3,11 +3,20 @@ export default {
   plugins: [],
   theme: {
     extend: {
+      animation: {
+        "spin-slow": "spin 20s linear infinite",
+      },
+      keyframes: {
+        spin: {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+      },
       width: {
         "10ch": "10ch",
       },
       colors: {
-        nav: { tab: "#B6BBC4" },
+        nav: { tab: "#DDDDDD" },
         event: {
           text: {
             purple: "#C738BD",
@@ -15,7 +24,7 @@ export default {
             blue: "#3FA2F6",
             green: "#36BA98",
           },
-          bg: { red: "#FCAEAE", blue: "#BBE9FF", green: "#DEF9C4" },
+          bg: { red: "#8CC", blue: "#BBE9FF", green: "#DEF9C4" },
         },
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
         btn: { delete: "#F5004F", save: "#399918" },
@@ -33,9 +42,9 @@ export default {
         table: { 100: "#B0A695", 200: "#EBE3D5" },
       },
       fontFamily: {
-        wires: ["Monoton"],
-        a: ["Orbitron"],
+        powered: ["Orbitron"],
         logo: ["NotoSerifKhitanSmallScript"],
+        joke: ["Playwrite"],
       },
       fontSize: {
         xs: "12px",

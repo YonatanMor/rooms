@@ -19,7 +19,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
 
   return (
     <>
-      {/* {!showOpts && ( */}
+      {!showOpts && (
         <div
           onClick={(e) => setShowOpts(true)}
           // className="items-strech flex flex-col justify-center"
@@ -40,21 +40,23 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
             />
           </div>
         </div>
-      {/* )} */}
+      )}
 
       {showOpts && (
-        <div className="absolute z-30 flex w-full flex-col items-center gap-6 ">
-          {options.map((opt, i) => {
-            return (
-              <div
-                className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-14 w-full items-center justify-center rounded-lg  border-2 border-[#1D54CA] bg-white text-2xl shadow-lg`}
-                onClick={() => handleSelecion(opt)}
-                key={i}
-              >
-                <span>{opt.value}</span>
-              </div>
-            )
-          })}
+        <div className="absolute top-10 z-30 left-0 w-full rounded-xl bg-[#e7e9ea] p-4 ">
+          <div className="flex w-full flex-col items-center gap-6 ">
+            {options.map((opt, i) => {
+              return (
+                <div
+                  className={`${opt.disable ? "text-text-grey-200" : "text-text-grey-500"} flex h-14 w-full items-center justify-center rounded-lg  border-2 border-[#1D54CA] bg-white text-2xl shadow-lg`}
+                  onClick={() => handleSelecion(opt)}
+                  key={i}
+                >
+                  <span>{opt.value}</span>
+                </div>
+              )
+            })}
+          </div>
         </div>
       )}
     </>
