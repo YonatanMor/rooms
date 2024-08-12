@@ -12,15 +12,15 @@ const slideMenuVariants = {
 
 export type TClickedCell = {
   classroom: string
-  duration: string
-  hour: string
+  duration?: string | undefined
+  hour?: string | undefined
   isClickable: boolean
   key: string
-  style: string
+  // style: string
   title: string
   type: string
-  innerStyle: string
-  outerStyle: string
+  innerStyle?: string
+  outerStyle?: string
 }
 
 // the hours cells are clickable

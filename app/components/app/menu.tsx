@@ -220,7 +220,7 @@ export default function Menu({
                 {/* </div> */}
               </nav>
             </div>
-            <div className="mx-1 flex h-60 flex-col items-center rounded-2xl	 bg-slate-300 pt-2 shadow-inner">
+            <div className="mx-2 flex h-60 flex-col items-center rounded-2xl bg-slate-300 pt-2 shadow-inner">
               <div className="mb-2 text-center font-powered text-xl font-semibold">
                 Powered By
               </div>
@@ -238,7 +238,7 @@ export default function Menu({
                     src="../../../public/images/zod.jpg"
                   ></img>
                 </div>
-                <div className="m-1 h-14 w-14 rounded-lg">
+                <div className="m-1 h-14 w-14 rounded-lg bg-white">
                   <img
                     className="h-full w-full rounded-lg"
                     src="../../../public/images/eslint.png"
@@ -250,9 +250,9 @@ export default function Menu({
                     src="../../../public/images/ts.png"
                   />
                 </div>
-                <div className="m-1 h-14 w-14 shadow-2xl shadow-blue-900 bg-gradient-to-b from-gray-800 via-gray-900 to-gray-700 rounded-lg">
+                <div className="m-1 h-14 w-14 rounded-lg bg-gradient-to-b from-gray-800 via-gray-900 to-gray-700 shadow-2xl shadow-blue-900">
                   <img
-                    className="animate-spin-slow h-full w-full p-1 rounded-lg"
+                    className="h-full w-full animate-spin-slow rounded-lg p-1"
                     src="../../../public/images/react.svg"
                   ></img>
                 </div>

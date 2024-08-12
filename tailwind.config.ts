@@ -12,9 +12,6 @@ export default {
           to: { transform: "rotate(360deg)" },
         },
       },
-      width: {
-        "10ch": "10ch",
-      },
       colors: {
         nav: { tab: "#DDDDDD" },
         event: {
@@ -24,7 +21,7 @@ export default {
             blue: "#3FA2F6",
             green: "#36BA98",
           },
-          bg: { red: "#8CC", blue: "#BBE9FF", green: "#DEF9C4" },
+          bg: { red: "#FCAEAE", blue: "#BBE9FF", green: "#DEF9C4" },
         },
         menu: { 300: "#BBE9FF", 400: "#708C99", 500: "#12ACF6" },
         btn: { delete: "#F5004F", save: "#399918" },

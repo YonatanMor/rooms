@@ -116,6 +116,7 @@ export default function Table({
         duration: event?.duration || "",
         styleOuter: "border-[1px] border-text-grey-700 bg-white flex",
         styleInner: `flex rounded-[4px] text-base ${event?.type === "Event" ? "bg-event-bg-blue text-event-text-blue" : event?.type === "Rehearsal" ? "bg-event-bg-green  text-event-text-green" : event?.type === "Lesson" ? "bg-event-bg-red  text-event-text-red" : "bg-white"}`,
+        // style: "",
       })
     }
     return [
@@ -123,9 +124,11 @@ export default function Table({
         title: room,
         classroom: room, //not sure i need it
         key: uuid(),
+        // style:"",
         styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] rounded-l-none border-text-grey-700 flex`, //sticky
         styleInner: `flex items-center text-text-grey-400`,
         isClickable: false,
+        type: "",
       },
       ...restOfRow,
     ]
@@ -142,6 +145,7 @@ export default function Table({
       // set text size in tailwind
       isClickable: false,
       duration: "",
+      type: "",
       // style: "",
       // innerStyle: "",
       // outerStyle: "",
@@ -174,7 +178,7 @@ export default function Table({
           <div className="absolute left-0 z-30 h-5 w-[78px] bg-white"></div>
 
           {table.map((cell) => {
-            // console.log(cell.duration || cell)
+            console.log(cell)
             if (skipCellsCounter.current === 1) {
               cell.duration === "1:00"
                 ? (skipCellsCounter.current = 2)

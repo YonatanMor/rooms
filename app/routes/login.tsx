@@ -5,7 +5,7 @@ export default function Login() {
   const navigate = useNavigate()
 
   return (
-    <div className="flex h-screen flex-col bg-gradient-to-t from-[#676769] to-[#a2a1a2] ">
+    <div className="flex h-screen flex-col bg-gradient-to-t from-[#6868ac] to-[#b871b8] ">
       <TopBar />
       <div className="white-space: pre-line mt-7 flex flex-col items-center px-1">
         <h1 className="font-joke  text-xl">
