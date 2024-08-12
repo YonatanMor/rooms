@@ -35,7 +35,6 @@ export async function namedAction<Actions extends ActionsRecord>(
   actionArgs: ActionFunctionArgs,
   actions: Actions,
 ): TNameActionResponse {
-  console.log({ actionArgs }, { actions })
   const { request } = actionArgs
   const name = await getActionName(request)
 

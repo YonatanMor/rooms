@@ -1,8 +1,6 @@
-import { useNavigate } from "@remix-run/react"
 import TopBar from "~/components/app/top-bar"
 
 export default function AdminMenu() {
-  const navigate = useNavigate()
 
   return (
     <div className="flex h-screen flex-col bg-gradient-to-t from-[#428598] via-[#feb47b] to-[#cd7ddb]">

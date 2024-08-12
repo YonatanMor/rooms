@@ -1,11 +1,25 @@
 import { useEffect, useState } from "react"
 import { IoIosArrowDown } from "react-icons/io"
 
-export default function Select({ options, inputId, dbValue, setHideForm }) {
-  const [showOpts, setShowOpts] = useState(false)
-  const [selected, setSelected] = useState()
+type SelectProps = {
+  setHideForm: (showForm: boolean) => void
+  inputId: string
+  dbValue: string | undefined
+  options: Option[]
+}
 
-  const handleSelecion = (opt) => {
+type Option = { value: string; disable: boolean }
+
+export default function Select({
+  options,
+  inputId,
+  dbValue,
+  setHideForm,
+}: SelectProps) {
+  const [showOpts, setShowOpts] = useState(false)
+  const [selected, setSelected] = useState("")
+
+  const handleSelecion = (opt: Option) => {
     if (!opt.disable) {
       setSelected(opt.value)
       setShowOpts(false)
@@ -13,16 +27,14 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
   }
 
   useEffect(() => {
-    // console.log(showOpts)
     setHideForm(showOpts)
-  }, [showOpts])
+  }, [showOpts,setHideForm])
 
   return (
     <>
       {!showOpts && (
         <div
-          onClick={(e) => setShowOpts(true)}
-          // className="items-strech flex flex-col justify-center"
+          onClick={() => setShowOpts(true)}
           className={` ${showOpts ? `hidden` : `items-strech flex flex-col justify-center`}`}
         >
           <div className=" mb-6 flex h-14 items-center justify-start gap-3 rounded-lg border-2 border-[#1D54CA] bg-white opacity-85">
@@ -43,7 +55,7 @@ export default function Select({ options, inputId, dbValue, setHideForm }) {
       )}
 
       {showOpts && (
-        <div className="absolute top-10 z-30 left-0 w-full rounded-xl bg-[#e7e9ea] p-4 ">
+        <div className="absolute left-0 top-10 z-30 w-full rounded-xl bg-[#e7e9ea] p-4 ">
           <div className="flex w-full flex-col items-center gap-6 ">
             {options.map((opt, i) => {
               return (

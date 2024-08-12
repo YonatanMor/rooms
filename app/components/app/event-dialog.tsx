@@ -16,14 +16,12 @@ export type TClickedCell = {
   hour?: string | undefined
   isClickable: boolean
   key: string
-  // style: string
   title: string
   type: string
   innerStyle?: string
   outerStyle?: string
 }
 
-// the hours cells are clickable
 export default function EventDialog({
   clickedCell,
 }: {
@@ -214,7 +212,6 @@ export default function EventDialog({
                   type="submit"
                   className="z-20 mt-3 flex h-10 w-24 items-center justify-center gap-1 rounded-3xl bg-[#c4405b] text-xl font-semibold text-[#eac4c4] shadow-sm"
                 >
-                  {/* <AiTwotoneDelete size={24}/> */}
                   <span>Delete</span>
                 </button>
               </Form>
@@ -225,5 +222,3 @@ export default function EventDialog({
     </AnimatePresence>
   )
 }
-
-// i guess youre a pretty fural person

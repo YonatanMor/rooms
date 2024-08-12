@@ -116,15 +116,13 @@ export default function Table({
         duration: event?.duration || "",
         styleOuter: "border-[1px] border-text-grey-700 bg-white flex",
         styleInner: `flex rounded-[4px] text-base ${event?.type === "Event" ? "bg-event-bg-blue text-event-text-blue" : event?.type === "Rehearsal" ? "bg-event-bg-green  text-event-text-green" : event?.type === "Lesson" ? "bg-event-bg-red  text-event-text-red" : "bg-white"}`,
-        // style: "",
       })
     }
     return [
       {
         title: room,
-        classroom: room, //not sure i need it
+        classroom: room, 
         key: uuid(),
-        // style:"",
         styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] rounded-l-none border-text-grey-700 flex`, //sticky
         styleInner: `flex items-center text-text-grey-400`,
         isClickable: false,
@@ -136,30 +134,19 @@ export default function Table({
 
   const tableHours = hours.map((hour) => {
     return {
-      classroom: "", //not sure i need it
+      classroom: "", 
       title: hour,
       hour: hour,
       key: uuid(),
       styleOuter: `z-20 sticky top-0 `,
       styleInner: `text-base text-text-grey-200 text-[10px] flex justify-center 	`,
-      // set text size in tailwind
       isClickable: false,
       duration: "",
       type: "",
-      // style: "",
-      // innerStyle: "",
-      // outerStyle: "",
     }
   })
 
   const table = [...tableHours, ...tableRows.flat()]
-
-  // useEffect(() => {
-  //   if (firstColWidth.current && patch.current) {
-  //     const sourceDivWidth = sourceDivRef.current.getBoundingClientRect().width;
-  //     targetDivRef.current.style.width = `${sourceDivWidth}px`;
-  //   }
-  // }, []);
 
   return (
     <div className="relative mb-2 flex h-[89dvh] flex-col">
@@ -178,7 +165,6 @@ export default function Table({
           <div className="absolute left-0 z-30 h-5 w-[78px] bg-white"></div>
 
           {table.map((cell) => {
-            console.log(cell)
             if (skipCellsCounter.current === 1) {
               cell.duration === "1:00"
                 ? (skipCellsCounter.current = 2)
@@ -196,7 +182,7 @@ export default function Table({
                 >
                   <div
                     onClick={() => handleClickedCell(cell)}
-                    className={`${cell.styleInner} grow `} //maybe the white class is redundent
+                    className={`${cell.styleInner} grow `} 
                   >
                     {cell.duration && (
                       <div className="flex rounded-[4px]">
@@ -205,7 +191,6 @@ export default function Table({
                         ></div>
                         <div className="flex flex-col px-1 ">
                           <span className=" pt-[1px] text-[10px]">
-                            {/* set the text size in TW config */}
                             {cell.hour} -{" "}
                             {
                               hours[

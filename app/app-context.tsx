@@ -1,28 +1,15 @@
-import { createContext, useState, ReactNode } from "react"
+import { createContext, ReactNode, useState } from "react";
 
 export const AppContext = createContext({
-  // grabz says no need to type state setters. what should be inside create context parentheses
   showMenu: false,
   setShowMenu: (_show: boolean) => {},
   showEventDialog: false,
   setShowEventDialog: (_show: boolean) => {},
-  isDark: false,
-  setIsDark: (_show: boolean) => {},
-})
+});
 
 export default function ContextProvider({ children }: { children: ReactNode }) {
-  // const x = localStorage.getItem("theme")
-  // console.log(x)
-
-  const [showMenu, setShowMenu] = useState<boolean>(false)
-  const [showEventDialog, setShowEventDialog] = useState<boolean>(false)
-  const [isDark, setIsDark] = useState<boolean>(() => {
-    if (typeof window !== "undefined") {
-      const theme = localStorage.getItem("theme")
-      return theme ? JSON.parse(theme) : false // Default to false if no theme is found
-    }
-    return false // Default value for server-side rendering
-  })
+  const [showMenu, setShowMenu] = useState<boolean>(false);
+  const [showEventDialog, setShowEventDialog] = useState<boolean>(false);
 
   return (
     <AppContext.Provider
@@ -31,11 +18,9 @@ export default function ContextProvider({ children }: { children: ReactNode }) {
         setShowMenu,
         showEventDialog,
         setShowEventDialog,
-        isDark,
-        setIsDark,
       }}
     >
       {children}
     </AppContext.Provider>
-  )
+  );
 }

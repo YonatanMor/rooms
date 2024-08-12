@@ -89,7 +89,7 @@ export async function action(actionArgs: ActionFunctionArgs) {
 }
 
 export default function Index() {
-  const { events } = useLoaderData<typeof loader>() // should it be inside a useEffect to prevent redundant calls to DB?
+  const { events } = useLoaderData<typeof loader>() 
   const [clickedCell, setClickedCell] = useState<TClickedCell | null>(null)
 
   return (
@@ -98,7 +98,7 @@ export default function Index() {
         <TopBar />
         <Table dbEvents={events} setClickedCell={setClickedCell} />
         <Flags />
-        <EventDialog clickedCell={clickedCell} dbEvents={events} />
+        <EventDialog clickedCell={clickedCell}/>
       </div>
     </Theme>
   )

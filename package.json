@@ -17,7 +17,7 @@
     "db:setup": "prisma generate && prisma migrate deploy && prisma db seed",
     "db:migrate": "prisma migrate dev --name ",
     "db:generate": "prisma generate",
-    "db:proxy": "flyctl proxy 5433 -a songi-db",
+    "db:proxy": "flyctl proxy 5433 -a rooms-withered-log-5104-db",
     "db:seed": "prisma db seed",
     "db:seed-from-prisma": "ts-node --require tsconfig-paths/register prisma/seed.ts",
     "prepare": "husky install"

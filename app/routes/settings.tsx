@@ -6,7 +6,7 @@ export default function Settings() {
       <TopBar />
       <div className="mt-10 flex flex-col items-center">
         <h1 className="font-joke text-xl">
-          Why don't programmers like nature?
+          Why don&apos;t programmers like nature?
           <br />
           It has too many bugs
         </h1>
