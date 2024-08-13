@@ -29,3 +29,5 @@ Rooms is a small Remix CURD application for room booking.
 - Framer motion labrary for animations
 - tailwindcss for styling
 - Zod as a backend validation library
+
+file stracture 
