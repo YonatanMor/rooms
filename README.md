@@ -47,3 +47,6 @@ Rooms features an original design and is not a direct clone of any other app.
 
 The styling has been revised multiple times from the original [Figma design](https://www.figma.com/design/qTJRg0AY0mg8tttuTCpZlC/rooms?node-id=0-1&t=VrXC8z4NGAD0TLF1-0)
 
+## Specifications sheet
+
+[view sheet](https://sulfuric-mountain-a81.notion.site/Rooms-specifications-sheet-fdb0759608b74d718fe64819b4acc6f7?pvs=4)
