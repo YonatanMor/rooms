@@ -46,5 +46,5 @@ Rooms features an original design and is not a direct clone of any other app.
 * The general layout was inspired by Google Calendar
 * The grid styling is reminiscent of Apple Calendar
 
-The styling has been revised multiple times from the [Figma design](https://www.figma.com/design/qTJRg0AY0mg8tttuTCpZlC/rooms?node-id=0-1&t=VrXC8z4NGAD0TLF1-0)
+The styling has been revised multiple times from the original [Figma design](https://www.figma.com/design/qTJRg0AY0mg8tttuTCpZlC/rooms?node-id=0-1&t=VrXC8z4NGAD0TLF1-0)
 
