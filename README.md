@@ -12,7 +12,7 @@ Rooms is a small Remix CURD application for room booking.
 
 1. Download and install Node.js from [@Node.js website](https://nodejs.org/e)
 
-2. Clone the repository:
+2. Clone the repository
    ```bash
    git clone https://github.com/YonatanMor/rooms
    ```
@@ -31,12 +31,12 @@ Rooms is a small Remix CURD application for room booking.
 
 ## Under the hood
 
-- Rooms run RemixJS as framework
-- Code in written in TypeScript
-- Data storage utilise PostgreSQL DB along with Prisma for iprooved type safety
-- Framer motion labrary for animations
-- tailwindcss for styling
-- Zod as a backend validation library
+- Rooms run `RemixJS` as framework
+- Code in written in `TypeScript`
+- Data storage utilise `PostgreSQL` DB along with `Prisma` for iprooved type safety
+- `Framer motion` labrary for animations
+- `tailwindcss` for styling
+- `Zod` as a backend validation library
 
 
 ## Design
