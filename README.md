@@ -7,7 +7,6 @@ Rooms is a small Remix CURD application for room booking.
 1. `_index.tsx`: Host most of the server side code, in charge of DB communications
 2. `table.tsx`: Responsible for handling the cleint side data and table fontend UI
 3. `event-dialog.tsx`: Displays the form interface and hnadle API calls to server
-4. `select.tsx`: ?
 
 ## Installation
 
