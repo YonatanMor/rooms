@@ -26,9 +26,7 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
     ```bash
     npm run dev
     ```
-
-5. grabz is that all? will the DB work?
-
+    
 ## Under the hood
 
 - Rooms run `RemixJS` as framework
