@@ -4,7 +4,7 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
 
 ## Main components
 
-1. `_index.tsx`: Host most of the server side code, in charge of DB communications
+1. `_index.tsx`: Host most of the server side code and in charge of DB communications
 2. `table.tsx`: Responsible for handling the cleint side data and table fontend UI
 3. `event-dialog.tsx`: Displays the form interface and hnadle API calls to server
 
@@ -17,7 +17,7 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
    git clone https://github.com/YonatanMor/rooms
    ```
 
-3. install dependencies
+3. Install dependencies
     ```bash
    npm install
    ```
@@ -26,7 +26,7 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
     ```bash
     npm run dev
     ```
-    
+
 ## Under the hood
 
 - Rooms run `RemixJS` as framework
