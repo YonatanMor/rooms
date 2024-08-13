@@ -19,14 +19,14 @@ Rooms is a small Remix CURD application for room booking.
    ```
 
 3. install dependencies
- ```bash
+    ```bash
    npm install
    ```
 
 4.  Run app 
-```bash
-npm run dev
-```
+    ```bash
+    npm run dev
+    ```
 
 5. grabz is that all? will the DB work?
 
