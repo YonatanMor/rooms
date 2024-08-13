@@ -5,8 +5,8 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
 ## Main components
 
 1. `_index.tsx`: Host most of the server side code and in charge of DB communications
-2. `table.tsx`: Responsible for handling the cleint side data and table fontend UI
-3. `event-dialog.tsx`: Displays the form interface and hnadle API calls to server
+2. `table.tsx`: table.tsx: Responsible for handling the client-side data and table frontend UI
+3. `event-dialog.tsx`: Displays the form interface and handle API calls to server
 
 ## Installation
 
@@ -30,12 +30,11 @@ Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms
 ## Under the hood
 
 - Rooms run `RemixJS` as framework
-- Code in written in `TypeScript`
-- Data storage utilise `PostgreSQL` DB along with `Prisma` for iprooved type safety
-- `Framer motion` labrary for animations
-- `tailwindcss` for styling
-- `Zod` as a backend validation library
-
+- `TypeScript` as the primary coding language
+- `PostgreSQL` as the database, paired with `Prisma` for enhanced type safety
+- `Framer motion` for animations
+- `TailwindCSS` for styling
+- `Zod` for backend validation
 
 ## Design
 
