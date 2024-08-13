@@ -1,6 +1,6 @@
 # Rooms
 
-Rooms is a small Remix CURD application for room booking.
+Rooms is a lightweight, mobile-oriented Remix CURD application for booking rooms.
 
 ## Main components
 
