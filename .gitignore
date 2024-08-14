@@ -3,3 +3,6 @@ node_modules
 /build
 /public/build
 /postgres-data
+
+/prisma/rooms.db
+/prisma/rooms.db-journal
