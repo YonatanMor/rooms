@@ -50,7 +50,7 @@ app.use(morgan("tiny"))
 // handle SSR requests
 app.all("*", remixHandler)
 
-const port = process.env.PORT || 5200
+const port = process.env.PORT || 3000
 app.listen(port, () =>
   // eslint-disable-next-line no-console
   console.log(`Express server listening at http://localhost:${port}`),
