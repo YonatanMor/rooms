@@ -4,16 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rooms</title>
+    <style>
+      #videoElement {
+        display: none; /* Hide the video element initially */
+      }
+    </style>
   </head>
   <body>
-    <video id="videoElement" controls src="rooms.mp4"></video>
     <button id="playButton">Play Video in Fullscreen</button>
+    <video id="videoElement" controls src="rooms.mp4"></video>
 
     <script>
       const video = document.getElementById('videoElement');
       const playButton = document.getElementById('playButton');
 
       playButton.addEventListener('click', function() {
+        // Show the video element
+        video.style.display = 'block';
+
         // Request fullscreen
         if (video.requestFullscreen) {
           video.requestFullscreen();
@@ -29,6 +37,9 @@
         video.play().catch(error => {
           console.error("Error trying to play the video:", error);
         });
+
+        // Optionally hide the button after clicking
+        playButton.style.display = 'none';
       });
     </script>
   </body>
