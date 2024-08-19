@@ -4,43 +4,65 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rooms</title>
-    <style>
-      #videoElement {
-        display: none; /* Hide the video element initially */
-      }
-    </style>
   </head>
+  <link rel="stylesheet" href="styles.css" />
   <body>
-    <button id="playButton">Play Video in Fullscreen</button>
+    <!-- <button id="playButton">Play Video</button> -->
     <video id="videoElement" controls src="rooms.mp4"></video>
+    <div id="header"><h1>Rooms</h1></div>
+
+    <img id="playButton" src="/public/images/play-icon.webp" alt="play video" />
+    <br class="br" />
+    <ul>
+      <li>
+        <a href="https://github.com/YonatanMor/rooms?tab=readme-ov-file#readme"
+          >readMe</a
+        >
+      </li>
+      <li><a href="https://github.com/YonatanMor">gitHub profile</a></li>
+      <li>
+        <a href="https://www.linkedin.com/in/jonathan-mor-dev/"
+          >linkedIn profile</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://drive.google.com/file/d/1rmxdHWHjF23FQVbY_HUUUGCt9dNgZrJ3/view?usp=sharing"
+          >my CV</a
+        >
+      </li>
+    </ul>
 
     <script>
-      const video = document.getElementById('videoElement');
-      const playButton = document.getElementById('playButton');
+      const video = document.getElementById("videoElement")
+      const playButton = document.getElementById("playButton")
 
-      playButton.addEventListener('click', function() {
+      playButton.addEventListener("click", function () {
         // Show the video element
-        video.style.display = 'block';
+        video.style.display = "block"
 
         // Request fullscreen
         if (video.requestFullscreen) {
-          video.requestFullscreen();
-        } else if (video.mozRequestFullScreen) { // Firefox
-          video.mozRequestFullScreen();
-        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
-          video.webkitRequestFullscreen();
-        } else if (video.msRequestFullscreen) { // IE/Edge
-          video.msRequestFullscreen();
+          video.requestFullscreen()
+        } else if (video.mozRequestFullScreen) {
+          // Firefox
+          video.mozRequestFullScreen()
+        } else if (video.webkitRequestFullscreen) {
+          // Chrome, Safari and Opera
+          video.webkitRequestFullscreen()
+        } else if (video.msRequestFullscreen) {
+          // IE/Edge
+          video.msRequestFullscreen()
         }
 
         // Play the video
-        video.play().catch(error => {
-          console.error("Error trying to play the video:", error);
-        });
+        video.play().catch((error) => {
+          console.error("Error trying to play the video:", error)
+        })
 
         // Optionally hide the button after clicking
-        playButton.style.display = 'none';
-      });
+        playButton.style.display = "none"
+      })
     </script>
   </body>
 </html>
