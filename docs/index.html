@@ -6,41 +6,30 @@
     <title>Rooms</title>
   </head>
   <body>
-    <video id="videoElement" controls autoplay src="rooms.mp4"></video>
+    <video id="videoElement" controls src="rooms.mp4"></video>
+    <button id="playButton">Play Video in Fullscreen</button>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const video = document.getElementById("videoElement")
+      const video = document.getElementById('videoElement');
+      const playButton = document.getElementById('playButton');
 
-        console.log(video)
-
-        // Function to request fullscreen
-        function requestFullscreen(element) {
-          console.log("in func")
-          if (element.requestFullscreen) {
-            console.log("1")
-            element.requestFullscreen()
-          } else if (element.mozRequestFullScreen) {
-            // Firefox
-            console.log("2")
-            element.mozRequestFullScreen()
-          } else if (element.webkitRequestFullscreen) {
-            // Chrome, Safari and Opera
-            console.log("3")
-            element.webkitRequestFullscreen()
-          } else if (element.msRequestFullscreen) {
-            // IE/Edge
-            console.log("4")
-            element.msRequestFullscreen()
-          }
+      playButton.addEventListener('click', function() {
+        // Request fullscreen
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { // Firefox
+          video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { // Chrome, Safari and Opera
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { // IE/Edge
+          video.msRequestFullscreen();
         }
-        console.log("out")
 
-        // Play the video and request fullscreen
-        video.play()
-        console.log(video.play())
-        requestFullscreen(video)
-      })
+        // Play the video
+        video.play().catch(error => {
+          console.error("Error trying to play the video:", error);
+        });
+      });
     </script>
   </body>
 </html>
