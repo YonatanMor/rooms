@@ -9,26 +9,38 @@
     <video id="videoElement" controls autoplay src="rooms.mp4"></video>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const video = document.getElementById('videoElement');
+      document.addEventListener("DOMContentLoaded", function () {
+        const video = document.getElementById("videoElement")
+
+        console.log(video)
 
         // Function to request fullscreen
         function requestFullscreen(element) {
+          console.log("in func")
           if (element.requestFullscreen) {
-            element.requestFullscreen();
-          } else if (element.mozRequestFullScreen) { // Firefox
-            element.mozRequestFullScreen();
-          } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            element.webkitRequestFullscreen();
-          } else if (element.msRequestFullscreen) { // IE/Edge
-            element.msRequestFullscreen();
+            console.log("1")
+            element.requestFullscreen()
+          } else if (element.mozRequestFullScreen) {
+            // Firefox
+            console.log("2")
+            element.mozRequestFullScreen()
+          } else if (element.webkitRequestFullscreen) {
+            // Chrome, Safari and Opera
+            console.log("3")
+            element.webkitRequestFullscreen()
+          } else if (element.msRequestFullscreen) {
+            // IE/Edge
+            console.log("4")
+            element.msRequestFullscreen()
           }
         }
+        console.log("out")
 
         // Play the video and request fullscreen
-        video.play();
-        requestFullscreen(video);
-      });
+        video.play()
+        console.log(video.play())
+        requestFullscreen(video)
+      })
     </script>
   </body>
 </html>
