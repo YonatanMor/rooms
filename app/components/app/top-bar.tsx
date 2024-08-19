@@ -8,7 +8,7 @@ export default function TopBar() {
 
   return (
     <>
-      <div className="relative top-1 mb-1 flex items-center justify-start ">
+      <div className="relative top-1 mb-1 flex items-center justify-start">
         <div className="relative ml-3 top-[-1px]" onClick={() => setShowMenu(true)}>
           <RxHamburgerMenu size={25} />
         </div>
