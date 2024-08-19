@@ -6,6 +6,29 @@
     <title>Rooms</title>
   </head>
   <body>
-    <video controls autoplay src="rooms.mp4"></video>
+    <video id="videoElement" controls autoplay src="rooms.mp4"></video>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const video = document.getElementById('videoElement');
+
+        // Function to request fullscreen
+        function requestFullscreen(element) {
+          if (element.requestFullscreen) {
+            element.requestFullscreen();
+          } else if (element.mozRequestFullScreen) { // Firefox
+            element.mozRequestFullScreen();
+          } else if (element.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            element.webkitRequestFullscreen();
+          } else if (element.msRequestFullscreen) { // IE/Edge
+            element.msRequestFullscreen();
+          }
+        }
+
+        // Play the video and request fullscreen
+        video.play();
+        requestFullscreen(video);
+      });
+    </script>
   </body>
 </html>
