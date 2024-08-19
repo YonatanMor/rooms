@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rooms</title>
+    <title>Yonatan Mor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -13,62 +13,73 @@
   </head>
   <link rel="stylesheet" href="styles.css" />
   <body>
-    <!-- <button id="playButton">Play Video</button> -->
-    <video id="videoElement" controls src="rooms.mp4"></video>
-    <div id="header"><h1>Rooms</h1></div>
-
-    <img id="playButton" src="/public/images/play-icon.webp" alt="play video" />
-    <ul>
-      <li>
-        <a href="https://github.com/YonatanMor/rooms?tab=readme-ov-file#readme"
-          >readMe</a
-        >
-      </li>
-      <li><a href="https://github.com/YonatanMor">gitHub</a></li>
-      <li>
-        <a href="https://www.linkedin.com/in/jonathan-mor-dev/">LinkedIn</a>
-      </li>
-      <li>
-        <a href="https://www.linkedin.com/in/jonathan-mor-dev/">Instagram</a>
-      </li>
-      <li id="cv">
-        <a
-          href="https://drive.google.com/file/d/1rmxdHWHjF23FQVbY_HUUUGCt9dNgZrJ3/view?usp=sharing"
-          >CV</a
-        >
-      </li>
-    </ul>
-
-    <script>
-      const video = document.getElementById("videoElement")
-      const playButton = document.getElementById("playButton")
-
-      playButton.addEventListener("click", function () {
-        // Show the video element
-        video.style.display = "block"
-
-        // Request fullscreen
-        if (video.requestFullscreen) {
-          video.requestFullscreen()
-        } else if (video.mozRequestFullScreen) {
-          // Firefox
-          video.mozRequestFullScreen()
-        } else if (video.webkitRequestFullscreen) {
-          // Chrome, Safari and Opera
-          video.webkitRequestFullscreen()
-        } else if (video.msRequestFullscreen) {
-          // IE/Edge
-          video.msRequestFullscreen()
-        }
-
-        // Play the video
-        video.play().catch((error) => {
-          console.error("Error trying to play the video:", error)
-        })
-
-        // Optionally hide the button after clicking
-        playButton.style.display = "none"
-      })
-    </script>
+    <div id="container">
+        <!-- <button id="playButton">Play Video</button> -->
+        <video id="videoElement" controls src="rooms.mp4"></video>
+        <div id="header">
+          <h1>Yonatan Mor</h1>
+          <h2>Front-end Eng.</h2>
+        </div>
+        <div id="text-container">
+          <p>
+            hi I'm Yonatan! <br />
+            a jonyior infusiest developer with genuan passion for developing a
+            pretty interfaces
+          </p>
+        </div>
+        <img id="playButton" src="/public/images/play-icon.webp" alt="play video" />
+        <ul>
+          <li>
+            <a href="https://github.com/YonatanMor/rooms?tab=readme-ov-file#readme"
+              >readMe</a
+            >
+          </li>
+          <li><a href="https://github.com/YonatanMor">gitHub</a></li>
+          <li>
+            <a href="https://www.linkedin.com/in/jonathan-mor-dev/">LinkedIn</a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/jonathan-mor-dev/">Instagram</a>
+          </li>
+          <li id="cv">
+            <a
+              href="https://drive.google.com/file/d/1rmxdHWHjF23FQVbY_HUUUGCt9dNgZrJ3/view?usp=sharing"
+              >CV</a
+            >
+          </li>
+        </ul>
+    </div>
   </body>
+
+  <script>
+    const video = document.getElementById("videoElement")
+    const playButton = document.getElementById("playButton")
+
+    playButton.addEventListener("click", function () {
+      // Show the video element
+      video.style.display = "block"
+
+      // Request fullscreen
+      if (video.requestFullscreen) {
+        video.requestFullscreen()
+      } else if (video.mozRequestFullScreen) {
+        // Firefox
+        video.mozRequestFullScreen()
+      } else if (video.webkitRequestFullscreen) {
+        // Chrome, Safari and Opera
+        video.webkitRequestFullscreen()
+      } else if (video.msRequestFullscreen) {
+        // IE/Edge
+        video.msRequestFullscreen()
+      }
+
+      // Play the video
+      video.play().catch((error) => {
+        console.error("Error trying to play the video:", error)
+      })
+
+      // Optionally hide the button after clicking
+      playButton.style.display = "none"
+    })
+  </script>
 </html>

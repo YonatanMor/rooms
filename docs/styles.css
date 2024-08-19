@@ -5,6 +5,12 @@ body {
   align-items: center;
   background-color: #090519;
   margin: 0;
+  font-family: "Source Code Pro";
+}
+
+#container {
+  /* min-width: 200px; */
+  max-width: 400px;
 }
 
 #header {
@@ -12,7 +18,17 @@ body {
   width: 100%;
   text-align: center;
   color: white;
-  /* margin-bottom: 1rem; */
+  padding: 8px;
+}
+
+h1 {
+  margin: 0;
+  font-weight: 700;
+}
+h2 {
+  font-size: 1rem;
+  margin: 0;
+  font-weight: 400;
 }
 
 #playButton {
@@ -47,15 +63,22 @@ li:hover {
   color: rgb(214, 17, 17);
 }
 
+#text-container {
+  background-color: #1d1834;
+}
+
 a {
   display: block;
   text-decoration: none;
   font-size: large;
   color: #beb8e0;
- font-family: 'Source Code Pro'
 }
 
-li:hover a {
+p {
+  color: #beb8e0;
+}
+
+li:active a {
   transition: ease-in-out 150ms;
   color: #868393;
 }
@@ -67,3 +90,7 @@ li:hover a {
 #cv {
   margin: 0;
 }
+
+/* move to yonatanMor repo
+write something about me
+video in popup modal (position abs display none, x button in modal) */
