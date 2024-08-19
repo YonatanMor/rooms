@@ -55,3 +55,10 @@
   font-weight: 400;
   font-style: normal;
 }
+
+@font-face {
+  font-family: "mono";
+  src: url("/fonts/SourceCodePro-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}

@@ -42,6 +42,7 @@ export default {
         powered: ["Orbitron"],
         logo: ["NotoSerifKhitanSmallScript"],
         joke: ["Playwrite"],
+        mono: ["mono"],
       },
       fontSize: {
         xs: "12px",

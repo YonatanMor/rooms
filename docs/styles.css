@@ -3,52 +3,67 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(73, 79, 77);
+  background-color: #090519;
   margin: 0;
 }
 
 #header {
-  background-color: rgb(48, 49, 49);
+  background-color: #1d1834;
   width: 100%;
   text-align: center;
-  margin-bottom: 1rem;
+  color: white;
+  /* margin-bottom: 1rem; */
 }
 
 #playButton {
   height: 70px;
   cursor: pointer;
+  margin: 1rem;
 }
 
-br {
-  height: 42px;
-  width: 30px;
-  color: blue;
-  background-color: brown;
-}
-
-ul{
-    padding: 0;
+ul {
+  padding: 0;
+  margin: 0;
+  padding: 2rem;
+  border-radius: 12px;
+  background-color: #1d1834;
 }
 
 li {
-  border: 1px black solid;
+  border: 1px #8a75f0 solid;
   border-radius: 4px;
   padding: 2px;
   width: 200px;
   text-align: center;
   list-style-type: none;
-  margin: 8px;
-  background-color: rgb(134, 138, 147);
+  margin-bottom: 1rem;
+  background-color: #090519;
+}
+
+li:hover {
+  transition: ease-in-out 150ms;
+  box-shadow: 1px 1px 10px 0px #2f0ed0;
+  background-color: #030108;
+  color: rgb(214, 17, 17);
 }
 
 a {
-    display: block;
+  display: block;
   text-decoration: none;
-  font-size: x-large;
-  color: rgb(222, 225, 227);
-  margin: 4px;
+  font-size: large;
+  color: #beb8e0;
+ font-family: 'Source Code Pro'
+}
+
+li:hover a {
+  transition: ease-in-out 150ms;
+  color: #868393;
 }
 
 #videoElement {
   display: none; /* Hide the video element initially */
+}
+
+#cv {
+  margin: 0;
 }
