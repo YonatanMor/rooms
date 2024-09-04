@@ -19,7 +19,7 @@ export default function Table({
     day: "numeric",
   }
   const fullDate = today.toLocaleDateString("en-US", options)
-  const displayDate = fullDate.slice(0, 16) + fullDate.slice(17)
+  const displayDate = fullDate.slice(0, 16) + " " + fullDate.slice(17)
 
   const { setShowEventDialog } = useContext(AppContext)
   const skipCellsCounter = useRef(1)
@@ -121,7 +121,7 @@ export default function Table({
     return [
       {
         title: room,
-        classroom: room, 
+        classroom: room,
         key: uuid(),
         styleOuter: `sticky px-1 bg-white left-0 text-base border-[1px] rounded-l-none border-text-grey-700 flex`, //sticky
         styleInner: `flex items-center text-text-grey-400`,
@@ -134,7 +134,7 @@ export default function Table({
 
   const tableHours = hours.map((hour) => {
     return {
-      classroom: "", 
+      classroom: "",
       title: hour,
       hour: hour,
       key: uuid(),
@@ -182,7 +182,7 @@ export default function Table({
                 >
                   <div
                     onClick={() => handleClickedCell(cell)}
-                    className={`${cell.styleInner} grow `} 
+                    className={`${cell.styleInner} grow `}
                   >
                     {cell.duration && (
                       <div className="flex rounded-[4px]">
